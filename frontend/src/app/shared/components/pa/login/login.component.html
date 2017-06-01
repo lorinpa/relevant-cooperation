@@ -1,0 +1,32 @@
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+
+      <fieldset>
+        <ml-textfield [formControl]="emailField" floating-label>
+          <ml-textfield-label>
+            <ml-icon class="ico-aligned">email</ml-icon>Email Address
+          </ml-textfield-label>
+          <ml-error [validateControl]="emailField" validator="required">Required field</ml-error>
+          <ml-error [validateControl]="emailField" validator="pattern">Must be a valid email address.</ml-error>
+        </ml-textfield>
+      </fieldset>
+
+       <fieldset>
+         <ml-textfield [formControl]="passwordTextField" type="password" floating-label>
+          <ml-textfield-label>
+            <ml-icon class="ico-aligned">lock</ml-icon>Password
+          </ml-textfield-label>
+          <ml-error [validateControl]="passwordTextField" validator="required">Required field</ml-error>
+          <ml-error [validateControl]="passwordTextField" validator="minLength">Minimum length is 4</ml-error>
+          <ml-error [validateControl]="passwordTextField" validator="maxLength">Maximum length is 25</ml-error>
+        </ml-textfield>
+      </fieldset>
+      <div>
+        form valid: {{loginForm.valid}}
+      </div>
+
+      <ml-button-submit [disabled]="!loginForm.valid" text="Submit Login"  aspect="raised"  ripple>Submit</ml-button-submit>
+     
+
+    </form>
+
+    

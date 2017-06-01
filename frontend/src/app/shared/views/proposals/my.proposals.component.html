@@ -1,0 +1,47 @@
+<p>
+  My Proposals
+</p>
+
+
+
+<table ml-table shadow="3" *ngIf="my_proposals.length > 0">
+      <tr>
+        <th text-cell>Date</th>
+        <th text-cell>Title</th>
+        <th text-cell>Message</th>
+        <th>&nbsp;</th>
+      </tr>
+
+      <tr *ngFor="let kw of my_proposals">
+        <td text-cell>{{kw.createdAt}} </td>
+        <td text-cell>{{kw.title}}</td>
+        <td><ml-button variant="minifab" aspect="raised" (click)="selectProposalById(kw.id); editDlg.show()"><ml-icon>edit</ml-icon></ml-button></td>
+        <td><ml-button variant="minifab" aspect="raised" (click)="deleteProposal(kw.id)"><ml-icon>delete</ml-icon></ml-button></td>
+      </tr>
+    </table>
+
+    <mdl-dialog #editDlg class="mdl-dialog">
+      <ml-dialog-content>
+         
+         <form [formGroup]="proposalForm" autocomplete="off">
+       <ml-textfield [formControl]="titleTF">
+        <ml-textfield-label>Title</ml-textfield-label>
+        <ml-error [validateControl]="titleTF" validator="required">Required</ml-error>
+        <ml-error [validateControl]="titleTF" validator="minLength">Min length 10</ml-error>
+        <ml-error [validateControl]="titleTF" validator="maxLength">Max length 128</ml-error>
+      </ml-textfield>
+      <textarea [formControl]="messageTF" rows="3" maxrows="10" id="styled">
+      
+        <ml-textfield-label>Proposal Message</ml-textfield-label>
+        <ml-error [validateControl]="messageTF" validator="required">Required</ml-error>
+        <ml-error [validateControl]="messageTF" validator="minLength">Min length 10</ml-error>
+      </textarea>
+    </form>
+  </ml-dialog-content>
+
+  <ml-dialog-actions>
+    <ml-button-submit [disabled]="!proposalForm.valid" aspect="raised, colored, primary" (click)="updateProposal()" ripple text="Update Proposal"></ml-button-submit>
+    <ml-button aspect="raised, colored, primary" (click)="editDlg.close(); clearSelectedProposal()" ripple>Close</ml-button>
+  </ml-dialog-actions>
+      
+    </mdl-dialog>

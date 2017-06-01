@@ -1,0 +1,39 @@
+<p>Partner Proposals</p>
+
+<table ml-table shadow="3" *ngIf="partner_proposals.length > 0">
+      <tr>
+        <th text-cell>Date</th>
+        <th text-cell>Made By</th>
+        <th text-cell>Title</th>
+     <!--   <th text-cell>Message</th>-->
+        <th>View Details</th>
+        <th>Dismiss</th>
+      
+      </tr>
+
+      <tr *ngFor="let kw of partner_proposals">
+        <td text-cell>{{kw.createdAt}} </td>
+        <td text-cell>{{kw.ownerName}} </td>
+        <td text-cell>{{kw.title}}</td>
+       <!-- <td text-cell>{{kw.message}}</td>-->
+        <td><ml-button variant="minifab" aspect="raised" (click)="selectProposalById(kw.id); detailDlg.show()"><ml-icon>more</ml-icon></ml-button></td>
+        <td><ml-button variant="minifab" aspect="raised" (click)="dismissPartnerProposal(kw.id)"><ml-icon>visibility_off</ml-icon></ml-button></td>
+      </tr>
+    </table>
+
+
+    <mdl-dialog #detailDlg class="mdl-dialog">
+      <ml-dialog-content>
+         <div>{{selected_proposal.title}}</div>
+         <hr/>
+         <div>Email:&nbsp;<a href="mailto:{{selected_proposal.ownerEmail}}">{{selected_proposal.ownerEmail}}</a></div>
+         <hr/>
+         <div class="scroll-pane"> 
+              <div  class="pa-table">{{selected_proposal.message}}</div>
+        </div>
+        
+      </ml-dialog-content>
+      <ml-dialog-actions>
+        <ml-button aspect="raised, colored, primary" (click)="detailDlg.close()" ripple>Close</ml-button>
+      </ml-dialog-actions>
+    </mdl-dialog>

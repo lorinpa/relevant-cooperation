@@ -1,0 +1,22 @@
+
+
+
+<ml-tabs ripple>
+
+  
+  <ml-tabs-bar>
+      <div ml-tab>Proposals:</div>
+      <a ml-tab href="#my-proposals-panel" ripple ml-active>Made by Me</a>
+      <a ml-tab href="#partner-proposals-panel" ripple>Sent by Others</a>
+  </ml-tabs-bar>
+
+ 
+
+  <ml-tab-panel ml-active id="my-proposals-panel" class="lightblue">
+   <my-proposals></my-proposals>
+    
+  </ml-tab-panel>
+  <ml-tab-panel id="partner-proposals-panel" class="yellow">
+    <partner-proposals></partner-proposals>
+  </ml-tab-panel>
+</ml-tabs>

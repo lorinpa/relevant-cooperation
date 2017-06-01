@@ -1,0 +1,276 @@
+
+<ml-tabs ripple>
+ 
+  <ml-tabs-bar small-screen-only style="justify-content: flex-start;">
+    <ml-menu ripple position="top-left">
+      <ml-menu-item ripple><a ml-tab href="#profile-panel" ripple ml-active>My Identity</a></ml-menu-item>
+      <ml-menu-item ripple><a ml-tab href="#my-skills-panel">My Skills</a></ml-menu-item>
+      <ml-menu-item ripple><a ml-tab href="#business-concepts-panel" ripple>Business Concepts</a></ml-menu-item>
+      <ml-menu-item ripple><a ml-tab href="#partner-skills-panel">Partner Skills</a></ml-menu-item>
+      
+    </ml-menu>
+  </ml-tabs-bar>
+
+  <ml-tabs-bar large-screen-only>
+     
+      <a ml-tab href="#profile-panel" ripple ml-active>My Identity</a>
+      <a ml-tab href="#my-skills-panel" ripple>My Skills</a>
+      <a ml-tab href="#business-concepts-panel" ripple>Business Concepts</a>
+      <a ml-tab href="#partner-skills-panel" ripple>Partner Skills</a>
+  </ml-tabs-bar>
+ 
+  <ml-tab-panel ml-active id="profile-panel" class="lightblue">
+
+    <form [formGroup]="update_profile_form">
+      <div  (mousedown)="rowController.setActiveRow(0)">
+        <div *ngIf="rowController.active_row !== 0">
+          <ml-icon class="ico-aligned">search</ml-icon>UserName<br/> {{userProfile.name}}
+        </div>
+        <fieldset *ngIf="rowController.active_row === 0">
+          <ml-textfield [formControl]="aliasTf" floating-label>
+            <ml-textfield-label>
+              <ml-icon class="ico-aligned">search</ml-icon>UserName
+            </ml-textfield-label>
+            <ml-error [validateControl]="aliasTf" validator="required">Required field</ml-error>
+            <ml-error [validateControl]="aliasTf" validator="minLength">Minimum length is 4</ml-error>
+            <ml-error [validateControl]="aliasTf" validator="maxLength">Maximum length is 25</ml-error>
+          </ml-textfield>
+          <ml-button-submit (click)="remoteUpdateUserName()" [disabled]="!aliasTf.valid" text="Update" aspect="raised" ripple>Submit</ml-button-submit>
+          <ml-button-submit (click)="cancelUpdateUserName()" text="Cancel" aspect="raised" ripple>Cancel</ml-button-submit>
+        </fieldset>
+      </div>
+
+      <div (mousedown)="rowController.setActiveRow(1)">
+        <div *ngIf="rowController.active_row !== 1">
+          <ml-icon class="ico-aligned">lock</ml-icon>Password<br/> ******
+        </div>
+        <fieldset *ngIf="rowController.active_row === 1">
+          <ml-textfield [formControl]="passwordTf" type="password" floating-label>
+            <ml-textfield-label>
+              <ml-icon class="ico-aligned">lock</ml-icon>Password
+            </ml-textfield-label>
+            <ml-error [validateControl]="passwordTf" validator="required">Required field</ml-error>
+            <ml-error [validateControl]="passwordTf" validator="minLength">Minimum length is 4</ml-error>
+            <ml-error [validateControl]="passwordTf" validator="maxLength">Maximum length is 25</ml-error>
+          </ml-textfield>
+          <ml-button-submit (click)="remoteUpdatePassword()" [disabled]="!passwordTf.valid" text="Update" aspect="raised" ripple>Submit</ml-button-submit>
+          <ml-button-submit (click)="rowController.resetActive()" text="Cancel" aspect="raised" ripple>Cancel</ml-button-submit>
+        </fieldset>
+      </div>
+
+      <div (mousedown)="rowController.setActiveRow(2)">
+        <div *ngIf="rowController.active_row !== 2">
+          <ml-icon class="ico-aligned">email</ml-icon>Email Address<br/> {{userProfile.email}}
+        </div>
+        <fieldset *ngIf="rowController.active_row === 2">
+          <ml-textfield [formControl]="emailTf" floating-label>
+            <ml-textfield-label>
+              <ml-icon class="ico-aligned">email</ml-icon>Email Address
+            </ml-textfield-label>
+            <ml-error [validateControl]="emailTf" validator="required">Required field</ml-error>
+            <ml-error [validateControl]="emailTf" validator="pattern">Must be a valid email address.</ml-error>
+          </ml-textfield>
+          <ml-button-submit (click)= "remoteUpdateEmail()" [disabled]="!emailTf.valid" text="Update" aspect="raised" ripple>Submit</ml-button-submit>
+          <ml-button-submit (click)="rowController.resetActive()" text="Cancel" aspect="raised" ripple>Cancel</ml-button-submit>
+        </fieldset>
+      </div>
+
+      <div (mousedown)="rowController.setActiveRow(3)">
+        <div *ngIf="rowController.active_row !== 3">
+          <ml-icon class="ico-aligned">map</ml-icon>Location<br/> {{userProfile.location}}
+        </div>
+        <fieldset *ngIf="rowController.active_row === 3">
+          <ml-textfield [formControl]="locationTf" floating-label>
+            <ml-textfield-label>
+              <ml-icon class="ico-aligned">map</ml-icon>Location
+            </ml-textfield-label>
+            <ml-error [validateControl]="locationTf" validator="maxLength">Maximum length is 128 characters</ml-error>
+          </ml-textfield>
+          <ml-button-submit (click)="remoteUpdateLocation()" [disabled]="!locationTf.valid" text="Update" aspect="raised" ripple>Submit</ml-button-submit>
+          <ml-button-submit (click)="rowController.resetActive()" text="Cancel" aspect="raised" ripple>Cancel</ml-button-submit>
+        </fieldset>
+      </div>
+
+    </form>
+  </ml-tab-panel>
+ 
+  <ml-tab-panel id="my-skills-panel">
+    <!-- we can't use ml-dialog because it uses a non-standard html component <dialog> -->
+    <mdl-dialog #addProvidedDialog class="mdl-dialog">
+      
+      <ml-button [hidden]="!displayAddProvideSkillButton" aspect="raised" ripple (click)="addNewProvided()">
+              Add Skill/Sevice
+      </ml-button>
+      <ml-dialog-content>
+        <form [formGroup]="filterProvidedSkillsForm">
+            <div>
+              <input type="text" [formControl]="filterProvidedSkills" (keyup)="providedSkillExist()" placeholder="Filter or Add"/>
+            </div>
+
+          <div class="scroll-pane"> 
+              <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
+                  <thead>
+                    <tr>
+                      <th (click)="toggleSortDirection()">
+                        <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
+                        <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
+                      </th>
+                    </tr>
+                    </thead>
+                    <tr *ngFor="let kw of kwlist | keywordFilter:filterProvidedSkills.value | keywordSort:sortDir ">
+                        <td text-cell (click)="addProvidedServiceRelationship(kw)">{{kw.keyword}}</td>
+                    </tr>
+                  
+              </table>
+          </div>
+        </form>
+      </ml-dialog-content>
+      <ml-dialog-actions>
+        <ml-button aspect="raised, colored, primary" (click)="addProvidedDialog.close()" ripple>Close</ml-button>
+      </ml-dialog-actions>
+    </mdl-dialog>
+    
+    <section>
+       <ml-title>Skills I Provide</ml-title>
+    </section>
+    <br/>
+    <section>
+         <!-- <ml-button aspect="raised"  ripple (click)="toggleShowProvided()">Add Skills</ml-button>-->
+         <ml-button aspect="raised"  ripple (click)="addProvidedDialog.show()">Add Skills</ml-button>
+    </section>
+    <br/>
+    <section>
+        <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
+     
+          <tr *ngFor="let kw of userProfile.provided_services">
+              <td text-cell>{{kw.keyword}}</td>
+              <td align="right">
+                  <ml-button variant="minifab" aspect="raised" (click)="removeProvidedService(kw.id)">
+                    <ml-icon>delete</ml-icon>
+                  </ml-button>
+              </td>
+          </tr>    
+        </table>      
+     </section> 
+  </ml-tab-panel>
+
+  <ml-tab-panel id="business-concepts-panel" >
+    <mdl-dialog #addBusConceptDialog class="mdl-dialog">
+  
+      <ml-button [hidden]="!displayAddBusConceptButton" aspect="raised" ripple (click)="addNewBusConcept()">
+              Add Concept
+      </ml-button>
+  
+      <ml-dialog-content>
+        <form [formGroup]="filterBusConceptsForm">
+            <div>             
+              <input type="text" [formControl]="filterBusConcepts"  (keyup)="providedBusConceptsExist()" placeholder="Filter or Add"/>
+            </div>
+
+          <div class="scroll-pane"> 
+              <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
+                  <thead>
+                    <tr>
+                    <th (click)="toggleSortDirection()">
+                        <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
+                        <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
+                    </th>
+                    </tr>
+                    </thead>
+                  <tr *ngFor="let kw of kwlist | keywordFilter:filterBusConcepts.value | keywordSort:sortDir ">
+                    <td text-cell (click)="addBusConceptRelationship(kw)">{{kw.keyword}}</td>
+                  </tr>
+              </table>
+          </div>
+        </form>
+      </ml-dialog-content>
+      <ml-dialog-actions>
+        <ml-button aspect="raised, colored, primary" (click)="addBusConceptDialog.close()" ripple>Close</ml-button>
+      </ml-dialog-actions>
+    </mdl-dialog>
+
+    <section>
+       <ml-title>Business Concepts</ml-title>
+    </section>
+    <br/>
+    <section>
+          <ml-button aspect="raised"  ripple (click)="addBusConceptDialog.show()">Add Concept</ml-button>
+    </section>
+    <br/>
+    <section>
+        <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
+          
+          <tr *ngFor="let kw of userProfile.business_concepts">
+              <td text-cell>{{kw.keyword}}</td>
+              <td align="right">
+                  <ml-button variant="minifab" aspect="raised" (click)="removeBusinessConcept(kw.id)">
+                    <ml-icon>delete</ml-icon>
+                  </ml-button>
+              </td>
+          </tr>    
+        </table>      
+     </section> 
+   
+  </ml-tab-panel>
+    <ml-tab-panel id="partner-skills-panel">
+    <!-- we can't use ml-dialog because it uses a non-standard html component <dialog> -->
+    <mdl-dialog #addPartnerSkillDialog class="mdl-dialog">
+     
+      <ml-button [hidden]="!displayAddPartnerSkillButton" aspect="raised" ripple (click)="addNewPartnerSkill()">
+              Add Skill/Service
+      </ml-button>
+     
+     
+      <ml-dialog-content>
+        <form [formGroup]="filterPartnerSkillsForm">
+          <div class="row">
+            <div>
+              <input type="text" [formControl]="filterPartnerSkills" (keyup)="partnerSkillExist()" placeholder="Filter or Add"/>
+            </div>
+          </div>
+
+          <div class="scroll-pane"> 
+              <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
+                  <thead>
+                    <tr>
+                      <th (click)="toggleSortDirection()">
+                        <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
+                        <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
+                      </th>
+                    </tr>
+                    </thead>
+                  <tr *ngFor="let kw of kwlist  | keywordFilter:filterPartnerSkills.value | keywordSort:sortDir ">
+                    <td text-cell (click)="addPartnerServiceRelationship(kw)">{{kw.keyword}}</td>
+                  </tr>
+              </table>
+          </div>
+        </form>
+      </ml-dialog-content>
+      <ml-dialog-actions>
+        <ml-button aspect="raised, colored, primary" (click)="addPartnerSkillDialog.close()" ripple>Close</ml-button>
+      </ml-dialog-actions>
+    </mdl-dialog>
+
+    <section>
+       <ml-title>Partners Skills/Services</ml-title>
+    </section>
+    <br/>
+    <section>
+          <ml-button aspect="raised"  ripple (click)="addPartnerSkillDialog.show()">Add Skills</ml-button>
+    </section>
+    <br/>
+    <section>
+        <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
+          <tr *ngFor="let kw of userProfile.partner_services">
+              <td text-cell>{{kw.keyword}}</td>
+              <td align="right">
+                  <ml-button variant="minifab" aspect="raised" (click)="removePartnerService(kw.id)">
+                    <ml-icon>delete</ml-icon>
+                  </ml-button>
+              </td>
+          </tr>    
+        </table>      
+     </section> 
+  </ml-tab-panel>
+
+</ml-tabs>
