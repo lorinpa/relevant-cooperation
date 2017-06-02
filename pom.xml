@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jbosswildfly</groupId>
-    <artifactId>jbosswildfly</artifactId>
+    <artifactId>co</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
     <name>jbosswildfly</name>
@@ -92,7 +92,7 @@
      <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
      <id>openshift</id>
      <build>
-        <finalName>jbosswildfly</finalName>
+        <finalName>co</finalName>
         <plugins>
           <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -124,7 +124,7 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <outputDirectory>deployments</outputDirectory>
-              		  <warName>ROOT</warName>
+              		  <warName>co</warName>
                 </configuration>
             </plugin>
         </plugins>
