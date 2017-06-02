@@ -98,9 +98,7 @@
     <!-- we can't use ml-dialog because it uses a non-standard html component <dialog> -->
     <mdl-dialog #addProvidedDialog class="mdl-dialog">
       
-      <ml-button [hidden]="!displayAddProvideSkillButton" aspect="raised" ripple (click)="addNewProvided()">
-              Add Skill/Sevice
-      </ml-button>
+      
       <ml-dialog-content>
         <form [formGroup]="filterProvidedSkillsForm">
             
@@ -122,6 +120,10 @@
           </div>
           <div>
               <input type="text" [formControl]="filterProvidedSkills" (keyup)="providedSkillExist()" placeholder="Filter or Add"/>
+              <ml-button [hidden]="!displayAddProvideSkillButton" variant="icon" (click)="addNewProvided()"><ml-icon>add</ml-icon></ml-button>
+              <!--<ml-button [hidden]="!displayAddProvideSkillButton" aspect="raised" ripple (click)="addNewProvided()">
+                   Add Skill/Sevice
+              </ml-button>-->
             </div>
 
         </form>
