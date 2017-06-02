@@ -5,7 +5,7 @@ import {Pipe,PipeTransform} from '@angular/core';
 export class KeywordPipe implements PipeTransform {
      transform(value: any, args: string[]): any {
        var lower_args = args.map(function(rec) {
-               return rec.toLowerCase;
+               return rec.toLowerCase();
        });
        if (value !== undefined && value !== null && value.length)
         return value.filter(rec=> {
