@@ -247,7 +247,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n.pa_table {\n    height: 900px;\n}\n\n.scroll-pane  { overflow: auto; padding-right: 10px; height: 200px; }\n/*.scroll-pane  { overflow: auto; padding-right: 10px; height: 400px; }*/\n\n\ntextarea#styled {\n\t/*width: 600px;*/\n    width: 100%;\n\theight: 120px;\n\tborder: 3px solid #cccccc;\n\tpadding: 5px;\n\t/*font-family: Tahoma, sans-serif;*/\n\tbackground-position: bottom right;\n\tbackground-repeat: no-repeat;\n}\n\n.mdl-dialog.open {\n\tmargin-top: 10%;\n}\n\n.mdl-data-table th.sort_row {\n\tline-height: 3px;\n\theight: 12px;\n\ttext-align: center;\n\tpadding-bottom: 2px;\n\tbackground-color: #f4f5f7;\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n.pa_table {\n    height: 900px;\n}\n\n\n.scroll-pane  { overflow: auto; padding-right: 10px; height: 400px; }\n\n\ntextarea#styled {\n\t/*width: 600px;*/\n    width: 100%;\n\theight: 120px;\n\tborder: 3px solid #cccccc;\n\tpadding: 5px;\n\t/*font-family: Tahoma, sans-serif;*/\n\tbackground-position: bottom right;\n\tbackground-repeat: no-repeat;\n}\n\n/*.mdl-dialog.open {\n\tmargin-top: 10%;\n}*/\n\n.mdl-data-table th.sort_row {\n\tline-height: 3px;\n\theight: 12px;\n\ttext-align: center;\n\tpadding-bottom: 2px;\n\tbackground-color: #f4f5f7;\n}\n\n@media screen \n  and (device-width: 320px) \n  and (device-height: 640px) \n  and (-webkit-device-pixel-ratio: 2) {\n\t.scroll-pane  { overflow: auto; padding-right: 10px; height: 160px; }\n}", ""]);
 
 // exports
 

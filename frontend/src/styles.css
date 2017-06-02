@@ -3,8 +3,8 @@
     height: 900px;
 }
 
-.scroll-pane  { overflow: auto; padding-right: 10px; height: 200px; }
-/*.scroll-pane  { overflow: auto; padding-right: 10px; height: 400px; }*/
+
+.scroll-pane  { overflow: auto; padding-right: 10px; height: 400px; }
 
 
 textarea#styled {
@@ -18,9 +18,9 @@ textarea#styled {
 	background-repeat: no-repeat;
 }
 
-.mdl-dialog.open {
+/*.mdl-dialog.open {
 	margin-top: 10%;
-}
+}*/
 
 .mdl-data-table th.sort_row {
 	line-height: 3px;
@@ -28,4 +28,11 @@ textarea#styled {
 	text-align: center;
 	padding-bottom: 2px;
 	background-color: #f4f5f7;
+}
+
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 2) {
+	.scroll-pane  { overflow: auto; padding-right: 10px; height: 160px; }
 }
