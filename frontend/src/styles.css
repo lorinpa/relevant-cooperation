@@ -18,11 +18,11 @@ textarea#styled {
 	background-repeat: no-repeat;
 }
 
-.lower_dlg {
-	margin-top: 50px;
+.mdl-dialog.open {
+	margin-top: 10%;
 }
 
-.sort_row {
+mdl-data-table th.sort_row {
 	line-height: 3px;
 	height: 12px;
 	text-align: center;

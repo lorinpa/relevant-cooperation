@@ -1,7 +1,7 @@
 
 import { RowController } from './../../../components/pa/editable/row-controller';
 
-import { MlDialog } from './../../../components/ml/components/dialog/mlDialog';
+//import { MlDialog } from './../../../components/ml/components/dialog/mlDialog';
 import { MdlSnackbarService } from '@angular-mdl/core/components';
 import { Sorter } from './../../../utils/sorter';
 import { SortKeyword } from './../../../pipes/sort-keyword';
