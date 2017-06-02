@@ -22,7 +22,7 @@ textarea#styled {
 	margin-top: 10%;
 }
 
-mdl-data-table th.sort_row {
+.mdl-data-table th.sort_row {
 	line-height: 3px;
 	height: 12px;
 	text-align: center;
