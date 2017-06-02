@@ -5,8 +5,7 @@
             Persistence unit for Hibernate User Guide
         </description>
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <non-jta-data-source>java:jboss/datasources/PostgreSQLDS</non-jta-data-source>
-    <!--<non-jta-data-source>java:/PostgresDS</non-jta-data-source>-->
+    <non-jta-data-source>java:/PostgresDS</non-jta-data-source>
     <class>org.pa.data.User</class>
     <class>org.pa.data.KeywordValue</class>
     <class>org.pa.data.UserProvidedService</class>
@@ -17,10 +16,10 @@
     <class>org.pa.data.ProposalPartner</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+     <!-- <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/co"/>
       <property name="javax.persistence.jdbc.user" value="padev"/>
-      <property name="javax.persistence.jdbc.password" value="padev"/>
+      <property name="javax.persistence.jdbc.password" value="padev"/>-->
       <property name="hibernate.show_sql" value="false"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>
