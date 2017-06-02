@@ -107,7 +107,7 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <outputDirectory>deployments</outputDirectory>
-              		  <warName>co</warName>
+              		  <warName>ROOT</warName>
                 </configuration>
             </plugin>
             <plugin>
