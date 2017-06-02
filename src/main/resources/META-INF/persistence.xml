@@ -5,7 +5,8 @@
             Persistence unit for Hibernate User Guide
         </description>
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <non-jta-data-source>java:/PostgresDS</non-jta-data-source>
+    <non-jta-data-source>java:jboss/datasources/PostgreSQLDS</non-jta-data-source>
+    <!--<non-jta-data-source>java:/PostgresDS</non-jta-data-source>-->
     <class>org.pa.data.User</class>
     <class>org.pa.data.KeywordValue</class>
     <class>org.pa.data.UserProvidedService</class>
