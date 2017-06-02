@@ -183,6 +183,48 @@
                         <flush-strategy>IdleConnections</flush-strategy>
                     </pool>
                 </datasource>
+                <datasource jta="true" jndi-name="java:/PostgresDS" pool-name="PostgresDS" enabled="true" use-ccm="true">
+                    <connection-url>jdbc:postgresql://${env.OPENSHIFT_POSTGRESQL_DB_HOST}:${env.OPENSHIFT_POSTGRESQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}</connection-url>
+                    <driver-class>org.postgresql.Driver</driver-class>
+                    <driver>postgresql-42.1.1.jar</driver>
+                    <pool>
+                        <min-pool-size>4</min-pool-size>
+                        <initial-pool-size>4</initial-pool-size>
+                        <max-pool-size>30</max-pool-size>
+                        <prefill>true</prefill>
+                        <flush-strategy>FailingConnectionOnly</flush-strategy>
+                    </pool>
+                    <security>
+                        <user-name>${env.OPENSHIFT_POSTGRESQL_DB_USERNAME}</user-name>
+                        <password>${env.OPENSHIFT_POSTGRESQL_DB_PASSWORD}</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <background-validation>true</background-validation>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
+                </datasource>
+                <datasource jta="true" jndi-name="java:/ShiroPostgresDS" pool-name="ShiroPostgresDS" enabled="true" use-ccm="true">
+                    <connection-url>jdbc:postgresql://${env.OPENSHIFT_POSTGRESQL_DB_HOST}:${env.OPENSHIFT_POSTGRESQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}</connection-url>
+                    <driver-class>org.postgresql.Driver</driver-class>
+                    <driver>postgresql-42.1.1.jar</driver>
+                    <pool>
+                        <min-pool-size>4</min-pool-size>
+                        <initial-pool-size>4</initial-pool-size>
+                        <max-pool-size>20</max-pool-size>
+                        <prefill>true</prefill>
+                        <flush-strategy>FailingConnectionOnly</flush-strategy>
+                    </pool>
+                    <security>
+                        <user-name>${env.OPENSHIFT_POSTGRESQL_DB_USERNAME}</user-name>
+                        <password>${env.OPENSHIFT_POSTGRESQL_DB_PASSWORD}</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <background-validation>true</background-validation>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
+                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
