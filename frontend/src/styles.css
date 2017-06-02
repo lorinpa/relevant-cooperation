@@ -31,5 +31,5 @@ textarea#styled {
 }
 
 @media screen and (max-width:360px)  {
-	.scroll-pane  { overflow: auto; padding-right: 10px; height: 160px; }
+	.scroll-pane  { overflow: auto; padding-right: 10px; height: 140px; }
 }

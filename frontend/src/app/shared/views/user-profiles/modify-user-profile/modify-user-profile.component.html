@@ -101,15 +101,16 @@
       
       <ml-dialog-content>
         <form [formGroup]="filterProvidedSkillsForm">
-            
+           <ml-button  variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === -1"><ml-icon>arrow_drop_down</ml-icon></ml-button>
+           <ml-button  variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === 1"><ml-icon>arrow_drop_up</ml-icon></ml-button>
           <div class="scroll-pane"> 
               <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
                   <thead>
                     <tr >
-                      <th (click)="toggleSortDirection()" class="sort_row">
+                      <!--<th (click)="toggleSortDirection()" class="sort_row">
                         <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
                         <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
-                      </th>
+                      </th>-->
                     </tr>
                     </thead>
                     <tr *ngFor="let kw of kwlist | keywordFilter:filterProvidedSkills.value | keywordSort:sortDir ">
