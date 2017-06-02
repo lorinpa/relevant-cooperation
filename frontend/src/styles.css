@@ -30,6 +30,6 @@ textarea#styled {
 	background-color: #f4f5f7;
 }
 
-@media handheld  {
+@media screen and (max-width:360px)  {
 	.scroll-pane  { overflow: auto; padding-right: 10px; height: 160px; }
 }

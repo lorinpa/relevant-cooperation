@@ -7674,10 +7674,12 @@ var KeywordPipe = (function () {
     function KeywordPipe() {
     }
     KeywordPipe.prototype.transform = function (value, args) {
-        //if (value)
+        var lower_args = args.map(function (rec) {
+            return rec.toLowerCase;
+        });
         if (value !== undefined && value !== null && value.length)
             return value.filter(function (rec) {
-                if (rec['keyword'] && rec['keyword'].includes(args))
+                if (rec['keyword'] && rec['keyword'].includes(lower_args))
                     return true;
             });
     };
