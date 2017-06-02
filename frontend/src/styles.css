@@ -3,7 +3,8 @@
     height: 900px;
 }
 
-.scroll-pane  { overflow: auto; padding-right: 10px; height: 400px; }
+.scroll-pane  { overflow: auto; padding-right: 10px; height: 300px; }
+/*.scroll-pane  { overflow: auto; padding-right: 10px; height: 400px; }*/
 
 
 textarea#styled {
