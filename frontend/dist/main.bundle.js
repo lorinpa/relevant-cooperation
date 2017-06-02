@@ -7674,9 +7674,12 @@ var KeywordPipe = (function () {
     function KeywordPipe() {
     }
     KeywordPipe.prototype.transform = function (value, args) {
-        var lower_args = args.map(function (rec) {
-            return rec.toLowerCase();
-        });
+        var lower_args = args;
+        if (args['length']) {
+            lower_args = args.map(function (rec) {
+                return rec.toLowerCase();
+            });
+        }
         if (value !== undefined && value !== null && value.length)
             return value.filter(function (rec) {
                 if (rec['keyword'] && rec['keyword'].includes(lower_args))
