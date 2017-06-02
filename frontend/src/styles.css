@@ -17,3 +17,15 @@ textarea#styled {
 	background-position: bottom right;
 	background-repeat: no-repeat;
 }
+
+.lower_dlg {
+	margin-top: 50px;
+}
+
+.sort_row {
+	line-height: 3px;
+	height: 12px;
+	text-align: center;
+	padding-bottom: 2px;
+	background-color: #f4f5f7;
+}

@@ -96,7 +96,7 @@
  
   <ml-tab-panel id="my-skills-panel">
     <!-- we can't use ml-dialog because it uses a non-standard html component <dialog> -->
-    <mdl-dialog #addProvidedDialog class="mdl-dialog">
+    <mdl-dialog #addProvidedDialog class="mdl-dialog lower_dlg">
       
       <ml-button [hidden]="!displayAddProvideSkillButton" aspect="raised" ripple (click)="addNewProvided()">
               Add Skill/Sevice
@@ -111,7 +111,7 @@
               <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
                   <thead>
                     <tr>
-                      <th (click)="toggleSortDirection()">
+                      <th (click)="toggleSortDirection()" class="sort_row">
                         <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
                         <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
                       </th>
