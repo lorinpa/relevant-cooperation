@@ -31,8 +31,7 @@ textarea#styled {
 }
 
 @media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) {
+  and (width: 320px) 
+  and (height: 640px)  {
 	.scroll-pane  { overflow: auto; padding-right: 10px; height: 160px; }
 }
