@@ -96,7 +96,7 @@
  
   <ml-tab-panel id="my-skills-panel">
     <!-- we can't use ml-dialog because it uses a non-standard html component <dialog> -->
-    <mdl-dialog #addProvidedDialog class="mdl-dialog pa-mobile">
+    <mdl-dialog #addProvidedDialog class="mdl-dialog">
       
       
       <ml-dialog-content>
@@ -115,16 +115,9 @@
           <div>
               <input type="text" [formControl]="filterProvidedSkills" (keyup)="providedSkillExist()" placeholder="Filter or Add"/>
               <ml-button [hidden]="!displayAddProvideSkillButton" variant="icon" (click)="addNewProvided()"><ml-icon>add</ml-icon></ml-button>
-              <!--<ml-button [hidden]="!displayAddProvideSkillButton" aspect="raised" ripple (click)="addNewProvided()">
-                   Add Skill/Sevice
-              </ml-button>-->
             </div>
-
         </form>
       </ml-dialog-content>
-     <!-- <ml-dialog-actions>
-        <ml-button aspect="raised, colored, primary" (click)="addProvidedDialog.close()" ripple>Close</ml-button>
-      </ml-dialog-actions>-->
     </mdl-dialog>
     
     <section>
