@@ -103,16 +103,9 @@
         <form [formGroup]="filterProvidedSkillsForm">
            <ml-button  variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === -1"><ml-icon>arrow_drop_down</ml-icon></ml-button>
            <ml-button  variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === 1"><ml-icon>arrow_drop_up</ml-icon></ml-button>
+           <ml-button  class="button_right" variant="icon" (click)="addProvidedDialog.close()"><ml-icon>clear</ml-icon></ml-button>
           <div class="scroll-pane"> 
               <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
-                  <thead>
-                    <tr >
-                      <!--<th (click)="toggleSortDirection()" class="sort_row">
-                        <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
-                        <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
-                      </th>-->
-                    </tr>
-                    </thead>
                     <tr *ngFor="let kw of kwlist | keywordFilter:filterProvidedSkills.value | keywordSort:sortDir ">
                         <td text-cell (click)="addProvidedServiceRelationship(kw)">{{kw.keyword}}</td>
                     </tr>
@@ -129,9 +122,9 @@
 
         </form>
       </ml-dialog-content>
-      <ml-dialog-actions>
+     <!-- <ml-dialog-actions>
         <ml-button aspect="raised, colored, primary" (click)="addProvidedDialog.close()" ripple>Close</ml-button>
-      </ml-dialog-actions>
+      </ml-dialog-actions>-->
     </mdl-dialog>
     
     <section>

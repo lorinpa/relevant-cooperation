@@ -30,6 +30,22 @@ textarea#styled {
 	background-color: #f4f5f7;
 }
 
+.button_right {
+	float: right;
+}
+
 @media screen and (max-width:360px)  {
 	.scroll-pane  { overflow: auto; padding-right: 10px; height: 140px; }
+	.mdl-data-table td.mdl-data-table__cell--non-numeric {
+		padding-top: 8px;
+		padding-bottom: 8px;
+		height: 32px;
+	}
+	.mdl-data-table tr {
+		height:36px;
+	}
+	input {
+		height:36px;
+		border: 3px solid #cccccc;
+	}
 }
