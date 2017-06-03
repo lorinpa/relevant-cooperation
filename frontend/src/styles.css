@@ -48,5 +48,8 @@ textarea#styled {
 		height:32px;
 		border: 3px solid #cccccc;
 	}
-	
+	.is-small-screen > .mdl-layout__header.mdl-layout__header--waterfall {
+		min-height: .9%;
+		height: 7%;
+	}
 }

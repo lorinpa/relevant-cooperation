@@ -109,12 +109,12 @@
                     <tr *ngFor="let kw of kwlist | keywordFilter:filterProvidedSkills.value | keywordSort:sortDir ">
                         <td text-cell (click)="addProvidedServiceRelationship(kw)">{{kw.keyword}}</td>
                     </tr>
-                  
               </table>
           </div>
           <div>
               <input type="text" [formControl]="filterProvidedSkills" (keyup)="providedSkillExist()" placeholder="Filter or Add"/>
               <ml-button [hidden]="!displayAddProvideSkillButton" variant="icon" (click)="addNewProvided()"><ml-icon>add</ml-icon></ml-button>
+              <ml-button small-screen-only class="button_right" variant="icon" (click)="addProvidedDialog.close()"><ml-icon>clear</ml-icon></ml-button>
             </div>
         </form>
       </ml-dialog-content>
