@@ -35,17 +35,17 @@ textarea#styled {
 }
 
 @media screen and (max-width:360px)  {
-	.scroll-pane  { overflow: auto; padding-right: 10px; height: 140px; }
+	.scroll-pane  { overflow: auto; padding-right: 10px; height: 130px; }
 	.mdl-data-table td.mdl-data-table__cell--non-numeric {
 		padding-top: 8px;
 		padding-bottom: 8px;
-		height: 32px;
+		height: 30px;
 	}
 	.mdl-data-table tr {
-		height:36px;
+		height:32px;
 	}
 	input {
-		height:36px;
+		height:32px;
 		border: 3px solid #cccccc;
 	}
 	
