@@ -50,6 +50,6 @@ textarea#styled {
 	}
 	.is-small-screen > .mdl-layout__header.mdl-layout__header--waterfall {
 		min-height: .9%;
-		height: 7%;
+		height: 10%;
 	}
 }
