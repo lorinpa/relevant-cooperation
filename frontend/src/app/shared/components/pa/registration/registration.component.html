@@ -18,5 +18,5 @@
           <ml-error [validateControl]="emailField" validator="pattern">Must be a valid email address.</ml-error>
         </ml-textfield>
       </fieldset>   
-      <ml-button-submit [disabled]="!registerForm.valid" text="Submit Request"  aspect="raised"  ripple>Submit</ml-button-submit>  
+      <ml-button-submit [disabled]="!registerForm.valid || working" text="Submit Request"  aspect="raised"  ripple>Submit</ml-button-submit>  
     </form>

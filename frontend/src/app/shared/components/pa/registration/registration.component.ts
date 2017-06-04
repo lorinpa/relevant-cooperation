@@ -17,6 +17,7 @@ import { User } from "app/shared/models/user";
 })
 export class RegistrationComponent implements OnInit, AfterContentInit {
   @ViewChild('spinner1') spinner1;
+  working = false;
   registerForm: FormGroup;
    emailField = new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]);
 
@@ -37,12 +38,14 @@ export class RegistrationComponent implements OnInit, AfterContentInit {
 
   register() {
     var email = this.emailField.value;
+    this.working = true;
     var userRequest = new User(0, email, '');
     this.spinner1.start();
     this.userService.registerAccount(userRequest).subscribe(
         (result) => {
             this.spinner1.stop();
             this.notifyMessageSent();
+
            
         },
         (err) => {
@@ -58,6 +61,7 @@ export class RegistrationComponent implements OnInit, AfterContentInit {
         handler: () => {
            this.emailField.setValue('');
            this.emailField.clearValidators();
+           this.working = false;
            this.router.navigate(['/login']);
         },
         text: 'Close.'

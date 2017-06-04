@@ -1995,6 +1995,7 @@ var RegistrationComponent = (function () {
         this.mdlSnackbarService = mdlSnackbarService;
         this.router = router;
         this.userService = userService;
+        this.working = false;
         this.emailField = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]);
     }
     RegistrationComponent.prototype.ngOnInit = function () {
@@ -2006,6 +2007,7 @@ var RegistrationComponent = (function () {
     RegistrationComponent.prototype.register = function () {
         var _this = this;
         var email = this.emailField.value;
+        this.working = true;
         var userRequest = new __WEBPACK_IMPORTED_MODULE_6_app_shared_models_user__["a" /* User */](0, email, '');
         this.spinner1.start();
         this.userService.registerAccount(userRequest).subscribe(function (result) {
@@ -2023,6 +2025,7 @@ var RegistrationComponent = (function () {
                 handler: function () {
                     _this.emailField.setValue('');
                     _this.emailField.clearValidators();
+                    _this.working = false;
                     _this.router.navigate(['/login']);
                 },
                 text: 'Close.'
@@ -8367,7 +8370,7 @@ module.exports = "    <form [formGroup]=\"loginForm\" (submit)=\"onSubmit()\">\n
 /* 332 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div>\n  Please use this form to either:\n  <ul>\n    <li>Register as a new Account (User).</li>\n    <li>Retrieve your password. I.E. I forgot my password.</li>\n  </ul>\n</div>\n <ml-spinner inactive #spinner1></ml-spinner>\n<form [formGroup]=\"registerForm\" (submit)=\"register()\">\n\n      <fieldset>\n        <ml-textfield [formControl]=\"emailField\" floating-label>\n          <ml-textfield-label>\n            <ml-icon class=\"ico-aligned\">email</ml-icon>Email Address\n          </ml-textfield-label>\n          <ml-error [validateControl]=\"emailField\" validator=\"required\">Required field</ml-error>\n          <ml-error [validateControl]=\"emailField\" validator=\"pattern\">Must be a valid email address.</ml-error>\n        </ml-textfield>\n      </fieldset>   \n      <ml-button-submit [disabled]=\"!registerForm.valid\" text=\"Submit Request\"  aspect=\"raised\"  ripple>Submit</ml-button-submit>  \n    </form>"
+module.exports = "\n<div>\n  Please use this form to either:\n  <ul>\n    <li>Register as a new Account (User).</li>\n    <li>Retrieve your password. I.E. I forgot my password.</li>\n  </ul>\n</div>\n <ml-spinner inactive #spinner1></ml-spinner>\n<form [formGroup]=\"registerForm\" (submit)=\"register()\">\n\n      <fieldset>\n        <ml-textfield [formControl]=\"emailField\" floating-label>\n          <ml-textfield-label>\n            <ml-icon class=\"ico-aligned\">email</ml-icon>Email Address\n          </ml-textfield-label>\n          <ml-error [validateControl]=\"emailField\" validator=\"required\">Required field</ml-error>\n          <ml-error [validateControl]=\"emailField\" validator=\"pattern\">Must be a valid email address.</ml-error>\n        </ml-textfield>\n      </fieldset>   \n      <ml-button-submit [disabled]=\"!registerForm.valid || working\" text=\"Submit Request\"  aspect=\"raised\"  ripple>Submit</ml-button-submit>  \n    </form>"
 
 /***/ }),
 /* 333 */
