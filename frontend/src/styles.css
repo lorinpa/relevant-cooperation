@@ -34,6 +34,12 @@ textarea#styled {
 	float: right;
 }
 
+input {
+		height:32px;
+		border: 3px solid #cccccc;
+		
+	}
+
 @media screen and (max-width:360px)  {
 	.scroll-pane  { overflow: auto; padding-right: 10px; height: 130px; }
 	.mdl-data-table td.mdl-data-table__cell--non-numeric {
@@ -58,6 +64,7 @@ textarea#styled {
 	input {
 		height:32px;
 		border: 3px solid #cccccc;
+		
 	}
 	.is-small-screen > .mdl-layout__header.mdl-layout__header--waterfall {
 		min-height: .9%;

@@ -104,7 +104,7 @@ export class ModifyUserProfileComponent implements OnInit {
         emailTf: this.emailTf
       });
 
-      this.filterProvidedSkills = new FormControl("");
+      this.filterProvidedSkills = new FormControl("",[Validators.minLength(3), Validators.maxLength(30)]);
       
       this.filterProvidedSkillsForm = new FormGroup({filterProvidedSkills:this.filterProvidedSkills});
 
