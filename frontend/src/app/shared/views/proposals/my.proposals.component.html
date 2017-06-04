@@ -8,17 +8,18 @@
       <tr>
         <th text-cell>Date</th>
         <th text-cell>Title</th>
-        <th text-cell>Message</th>
-        <th>&nbsp;</th>
+        <th text-cell>Details</th>
+        <th text-cell>Delete</th>
       </tr>
 
       <tr *ngFor="let kw of my_proposals">
         <td text-cell>{{kw.createdAt}} </td>
         <td text-cell style="white-space: pre-wrap;">{{kw.title}}</td>
-        <td><ml-button variant="icon" aspect="raised" (click)="selectProposalById(kw.id); editDlg.show()"><ml-icon>edit</ml-icon></ml-button></td>
-        <td><ml-button variant="icon" aspect="raised" (click)="deleteProposal(kw.id)"><ml-icon>delete</ml-icon></ml-button></td>
+        <td text-cell><ml-button variant="icon" aspect="raised" (click)="selectProposalById(kw.id); editDlg.show()"><ml-icon>edit</ml-icon></ml-button></td>
+        <td text-cell><ml-button variant="icon" aspect="raised" (click)="deleteProposal(kw.id)"><ml-icon>delete</ml-icon></ml-button></td>
       </tr>
     </table>
+
 
     <mdl-dialog #editDlg class="mdl-dialog">
       <ml-dialog-content>

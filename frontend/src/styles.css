@@ -40,10 +40,21 @@ textarea#styled {
 		padding-top: 8px;
 		padding-bottom: 8px;
 		height: 30px;
+		padding-left: 4px;
 	}
 	.mdl-data-table tr {
 		height:32px;
 	}
+
+	 .mdl-data-table td:first-of-type.mdl-data-table__cell--non-numeric,
+	 .mdl-data-table th:first-of-type.mdl-data-table__cell--non-numeric {
+		padding-left: 4px;
+	}
+
+    .mdl-data-table tbody, th.mdl-data-table__cell--non-numeric {
+		padding-left: 4px;
+	}
+
 	input {
 		height:32px;
 		border: 3px solid #cccccc;
