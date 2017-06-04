@@ -9,12 +9,16 @@ import { KeywordsComponent } from './shared/views/keywords/keywords.component';
 import { Routes } from '@angular/router';
 import {AppComponent} from './app.component';
 import { ProposalsComponent } from "app/shared/views/proposals/proposals.component";
+import { RegistrationComponent } from "app/shared/components/pa/registration/registration.component";
+
+
 
 export const routes: Routes = [
   { path: 'home', component: AppComponent },
   { path: 'modprofile',  canActivate: [LoggedInGuard], component: ModifyUserProfileComponent},
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LoginComponent},
+  { path: 'register', component: RegistrationComponent},
   { path: 'keywords', component: KeywordsComponent},
   { path: 'search', canActivate: [LoggedInGuard], component: SearchComponent},
   { path: 'proposals', canActivate: [LoggedInGuard], component: ProposalsComponent},

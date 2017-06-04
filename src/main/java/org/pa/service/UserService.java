@@ -12,6 +12,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.security.Key;
 import javax.crypto.spec.SecretKeySpec;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -24,11 +25,13 @@ import javax.xml.bind.DatatypeConverter;
 import org.pa.data.User;
 import static org.pa.definitions.RequestDefinitions.NOT_UNIQUE_EXCEPTION;
 import static org.pa.definitions.RequestDefinitions.UNEXPECTED_EXCEPTION;
+import org.pa.dto.RegistrationDTO;
 import org.pa.dto.UserDTO;
 import org.pa.exception.UniqueException;
 import org.pa.repository.UserRepository;
 import org.pa.rest.message.SimpleErrorMessage;
 import org.pa.rest.message.SimpleSuccessMessage;
+import org.pa.utils.MailRegistration;
 
 /**
  *
@@ -39,10 +42,6 @@ import org.pa.rest.message.SimpleSuccessMessage;
 public class UserService {
 
     //private static final Set<User> users = Collections.synchronizedSet(new HashSet<User>());
-
-    
-
- 
 
     @PUT
     @Produces("application/json")
@@ -86,32 +85,27 @@ public class UserService {
            // Logger.getLogger(UserProfileService.class.getName()).log(Level.SEVERE, null, ex);
            SimpleErrorMessage errorMessage = new SimpleErrorMessage(NOT_UNIQUE_EXCEPTION);
            return Response.status(Response.Status.NOT_ACCEPTABLE).entity(errorMessage).build();
-        }
-        
+        }  
     }
 
     
-/*
-    private boolean shiroAuth(User user) {
-        boolean result = false;
-        Subject currentUser = SecurityUtils.getSubject();
-        if (!currentUser.isAuthenticated()) {
-            UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), user.getPassword());
-            try {
-                currentUser.login(token);
-                result= true;
-            } catch (UnknownAccountException uae) {
-                System.err.println("UserService unknown account exception");
-            } catch (IncorrectCredentialsException ice) {
-                 System.err.println("UserService incorrect credentials exception");
-            } catch (LockedAccountException lae) {
-                System.err.println("UserService locked account exception");
-            }
-            catch ( AuthenticationException ae ) {
-                System.err.println("UserService Authentication exception");
-            }
+    @POST
+    @Path("/register")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response registerAccount( User user) {
+        
+        String email = user.getEmail();
+        try {
+                RegistrationDTO registation = UserRepository.getInstance().createAccount(email);
+                MailRegistration.getInstance().sendRegistration(registation);
+                return Response.ok(registation, MediaType.APPLICATION_JSON).build();
+                
+        } catch (Exception ex) {
+           // Logger.getLogger(UserProfileService.class.getName()).log(Level.SEVERE, null, ex);
+           SimpleErrorMessage errorMessage = new SimpleErrorMessage(NOT_UNIQUE_EXCEPTION);
+           return Response.status(Response.Status.NOT_ACCEPTABLE).entity(errorMessage).build();
+        }
     }
-    return result ;
-}*/
 
 }

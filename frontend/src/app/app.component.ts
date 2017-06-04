@@ -30,17 +30,12 @@ import { Subscription }   from 'rxjs/Subscription';
 export class AppComponent implements OnInit {
   
   userProfile= new UserProfile(-1,'');
-  //userName = '';
 
-//  userNameSubscription: Subscription;
+
+
   userProfileSubscription: Subscription;
   constructor(private userService: UserService, public profileService: UserProfileService ) 
   {
-     /* this.userNameSubscription = profileService.userName$.subscribe(
-        name => {
-          this.userName = name;
-        }
-      );*/
       this.userProfileSubscription = profileService.up$.subscribe(
         up => {
           this.userProfile = up;
@@ -50,7 +45,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-     // this.userProfile = new UserProfile(0, '');
       if (this.isLoggedIn()) this.getProfileData();
   }
 
@@ -62,8 +56,7 @@ export class AppComponent implements OnInit {
     return this.userService.isLoggedIn();
   }
   
-  
-  isLoading = false;
+    isLoading = false;
 
   onLoading($event){
     this.isLoading = $event;
@@ -80,16 +73,12 @@ export class AppComponent implements OnInit {
          responseData = JSON.parse(msg);
          var up: UserProfile;
          if (responseData['name']) {
-            // this.profileService.currentUserProfile.name = responseData['name'];
-           //  this.profileService.publishUserName(responseData['name']);
              up = new UserProfile(-1, responseData['name']);
          }
          if (responseData['location']) {
-           //this.profileService.currentUserProfile.location= responseData['location'];
            up.location = responseData['location'];
         }
         if (responseData['email']) {
-          // this.profileService.currentUserProfile.email = responseData['email'];
            up.email= responseData['email'];
         }
         if (up) this.profileService.publishUserProfile(up);

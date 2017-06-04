@@ -9,8 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.pa.data.User;
 import org.pa.data.UserProfile;
+import org.pa.dto.RegistrationDTO;
 import org.pa.exception.UniqueException;
 import org.pa.jpa.JPAUtil;
+import org.pa.utils.StringGen;
 
 /**
  *
@@ -19,6 +21,8 @@ import org.pa.jpa.JPAUtil;
 public class UserRepository extends CommonRepository {
     
     private static UserRepository instance;
+    
+    private final String DEFAULT_LOCATION = "Anytown";
     
     public static UserRepository getInstance() {
         if (instance == null) {
@@ -88,5 +92,72 @@ public class UserRepository extends CommonRepository {
         em.getTransaction().commit();
         em.close();
         return newSubjectName;
+    }
+    
+    /*
+        This method needs to do several things. 
+        -   Check/Verify is this an existing account? or a new account
+        -   An account is : new User + related new UserProfile()
+        -   Create a unique "name" from UserProfile.name (alias)
+            -   take the left hand portion of the email address and then iteratate:
+                - is the value being used. if not use it. else suffix a couple characters and check again.
+        
+    */
+    public RegistrationDTO createAccount(String email) throws  Exception {
+        RegistrationDTO registration = new RegistrationDTO();
+        registration.setEmail(email);
+        boolean isNewAccount = false;
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            
+            Query q = em.createQuery("select COUNT(a.id) from User a where a.email = ?1");
+            q.setParameter(1, email);
+            em.getTransaction().begin();
+            Long count = (Long) q.getSingleResult();
+            if (count == 0) isNewAccount = true;
+            registration.setIsNewAccount(isNewAccount);
+            if (isNewAccount) {
+                 boolean nameFound = false;
+                 String name = email.split("@")[0];
+                
+                 Query nq = em.createQuery("select COUNT(a.id) from UserProfile a where a.name = ?1");
+                 do {
+                     nq.setParameter(1, name);
+                     count = (Long) nq.getSingleResult();
+                     if (count == 0) { 
+                         nameFound = true;
+                     } else {
+                         name = name+ StringGen.getInstance().generate(3);
+                     }
+                 } while(!nameFound);
+                 String password = StringGen.getInstance().generate(8);
+                 User user = new User();
+                 user.setEmail(email);
+                 user.setPassword(password);
+                 em.persist(user);
+                 UserProfile userProfile = new UserProfile(name, DEFAULT_LOCATION);
+                 userProfile.setUser(user);
+                 em.persist(userProfile);
+                 em.getTransaction().commit();
+                 registration.setName(name);
+                 registration.setPassword(password);
+                
+                  
+            } else {
+                 Query passwordQuery = em.createQuery("select a.password from User a where a.email = ?1");
+                 passwordQuery.setParameter(1, email);
+                 String password = (String) passwordQuery.getSingleResult();
+                 em.getTransaction().commit();
+                 registration.setPassword(password);
+            }
+            
+        } catch (Exception e ) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+                
+        return registration;
     }
 }

@@ -60,6 +60,18 @@ export class UserService {
     return this.loggedIn;
   }
 
+  
+  /*
+  *   Method used to both create a new account or 
+      notify an existing user what their password is
+  */
+  registerAccount(user: User) : Observable<Response> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+     return this.http
+      .post('/co/api/user/register', user, {headers})
+      .catch(this.handleError);
+  }
  
 
   getBearerToken() : string {

@@ -1,3 +1,4 @@
+import { MlSpinnerMod } from './shared/components/ml/components/spinner/mlSpinnerMod';
 import { ProposalService } from './shared/services/proposal.service';
 import { MlChipMod } from './shared/components/ml/components/chip/mlChipMod';
 import { MlTitleMod } from './shared/components/ml/components/title/mlTitleMod';
@@ -51,6 +52,7 @@ import { SearchComponent } from './shared/views/search/search.component';
 import { MyProposalsComponent } from './shared/views/proposals/my.proposals.component';
 import { PartnerProposalsComponent } from "app/shared/views/proposals/partner.proposals.component";
 import { ProposalsComponent } from './shared/views/proposals/proposals.component';
+import { RegistrationComponent } from './shared/components/pa/registration/registration.component';
 
 
 
@@ -67,7 +69,8 @@ import { ProposalsComponent } from './shared/views/proposals/proposals.component
     SearchComponent,
     MyProposalsComponent,
     PartnerProposalsComponent,
-    ProposalsComponent
+    ProposalsComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +96,7 @@ import { ProposalsComponent } from './shared/views/proposals/proposals.component
     MlGridMod,
     MlTitleMod,
     MlChipMod,
+    MlSpinnerMod,
 
     ReactiveFormsModule,
     MdlModule,

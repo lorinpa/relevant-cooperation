@@ -20,13 +20,14 @@
           <ml-error [validateControl]="passwordTextField" validator="maxLength">Maximum length is 25</ml-error>
         </ml-textfield>
       </fieldset>
-      <div>
-        form valid: {{loginForm.valid}}
-      </div>
-
       <ml-button-submit [disabled]="!loginForm.valid" text="Submit Login"  aspect="raised"  ripple>Submit</ml-button-submit>
-     
-
     </form>
 
+    
+    <div style="margin-top:14px;">
+
+      <a [routerLink]="['/register']"><ml-icon>assignment_ind</ml-icon>
+        Want to Register? or Forgot Password? Click here.
+      </a>
+    </div>
     
