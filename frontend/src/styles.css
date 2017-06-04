@@ -52,4 +52,10 @@ textarea#styled {
 		min-height: .9%;
 		height: 10%;
 	}
+
+	div.mdl-tabs__tab {
+		padding-left: 0px;
+		text-align: left;
+		font-size: 95%;
+	}
 }

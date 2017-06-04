@@ -14,9 +14,9 @@
 
       <tr *ngFor="let kw of my_proposals">
         <td text-cell>{{kw.createdAt}} </td>
-        <td text-cell>{{kw.title}}</td>
-        <td><ml-button variant="minifab" aspect="raised" (click)="selectProposalById(kw.id); editDlg.show()"><ml-icon>edit</ml-icon></ml-button></td>
-        <td><ml-button variant="minifab" aspect="raised" (click)="deleteProposal(kw.id)"><ml-icon>delete</ml-icon></ml-button></td>
+        <td text-cell style="white-space: pre-wrap;">{{kw.title}}</td>
+        <td><ml-button variant="icon" aspect="raised" (click)="selectProposalById(kw.id); editDlg.show()"><ml-icon>edit</ml-icon></ml-button></td>
+        <td><ml-button variant="icon" aspect="raised" (click)="deleteProposal(kw.id)"><ml-icon>delete</ml-icon></ml-button></td>
       </tr>
     </table>
 
