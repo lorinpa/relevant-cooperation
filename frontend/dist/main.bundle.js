@@ -63,9 +63,7 @@ var MdlElement = (function () {
 /***/ }),
 /* 14 */,
 /* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -178,6 +176,8 @@ var _a;
 //# sourceMappingURL=user.service.js.map
 
 /***/ }),
+/* 17 */,
+/* 18 */,
 /* 19 */,
 /* 20 */,
 /* 21 */,
@@ -428,7 +428,7 @@ MdlTextfield.prototype.init = function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(62);
@@ -654,7 +654,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(35);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProposalService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -761,7 +761,7 @@ var _a, _b;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(62);
@@ -1262,7 +1262,7 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_user_profile_service_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_models_user_profile__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1840,7 +1840,7 @@ MlTitleMod = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_user_profile__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_profile_service_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_user__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(3);
@@ -1974,7 +1974,7 @@ var _a, _b, _c, _d, _e;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_mdl_core_components__ = __webpack_require__(15);
@@ -2064,7 +2064,7 @@ var _a, _b, _c;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoggedInGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2117,7 +2117,8 @@ var User = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_user_service__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FrontPageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2129,22 +2130,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var FrontPageComponent = (function () {
-    function FrontPageComponent() {
+    function FrontPageComponent(userService) {
+        this.userService = userService;
     }
+    FrontPageComponent.prototype.isLoggedIn = function () {
+        return this.userService.isLoggedIn();
+    };
     FrontPageComponent.prototype.ngOnInit = function () {
     };
     return FrontPageComponent;
 }());
 FrontPageComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_10" /* Component */])({
         selector: 'app-front-page',
         template: __webpack_require__(333),
         styles: [__webpack_require__(325)]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_user_service__["a" /* UserService */]) === "function" && _a || Object])
 ], FrontPageComponent);
 
+var _a;
 //# sourceMappingURL=front-page.component.js.map
 
 /***/ }),
@@ -3255,7 +3262,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_components_ml_components_grid_mlGridMod__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_components_ml_components_tooltip_mlTooltipMod__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_guards_logged_in_guard__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_user_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_services_user_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_pipes_sort_keyword__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_components_ml_components_controls_toggle_mlToggleMod__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_pipes_keyword_pipe__ = __webpack_require__(250);
@@ -8385,7 +8392,7 @@ module.exports = "\n<div>\n  Please use this form to either:\n  <ul>\n    <li>Re
 /* 333 */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  Welcome to the future.\n</p>\n"
+module.exports = "<p>\n  Welcome to the Relevant Coop. \n</p>\n\n<ol>\n  <li>Describe yourself and what you are looking for: <a [routerLink]=\"['/modprofile']\">\n        <ml-icon>perm_identity</ml-icon>\n        Profile</a></li>\n  <li>See who matches your criteria. Make a proposal to your matches: <a [routerLink]=\"['/search']\">   \n         <ml-icon>link</ml-icon>\n        Find Partners</a>\n  </li>\n  <li>See if others have made you a proposal:  <a [routerLink]=\"['proposals']\">\n          <ml-icon>mail</ml-icon>\n          Proprosals\n       </a>\n      \n  </li>\n\n</ol>\n\n<p *ngIf=\"!isLoggedIn()\">Please note! You need to be logged in to use this website's functions.\n    <a  [routerLink]=\"['/login']\">\n         <ml-icon>person_pin</ml-icon>\n         Login\n      </a>\n</p>"
 
 /***/ }),
 /* 334 */
@@ -8415,7 +8422,7 @@ module.exports = "\n\n\n<ml-tabs ripple>\n\n  \n  <ml-tabs-bar>\n      <div ml-t
 /* 338 */
 /***/ (function(module, exports) {
 
-module.exports = " \n   \n\n<ml-grid>\n <ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>\n <ml-grid-cell *ngIf=\"searchResults.length !== 0 || searchBusResults.length !== 0\"  width=\"2\">\n   <ml-button-submit (click)=\"makeProposalDlg.show()\" [disabled]=\"searchResults.length === 0 && searchBusResults.length === 0\" text=\"Create a Proposal\" aspect=\"raised\" ripple>\n\n   </ml-button-submit>\n </ml-grid-cell>\n <ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    <form [formGroup]=\"searchForm\">\n      <ml-chip-button *ngIf=\"searchResults.length === 0\" id=\"partner-search\" (click)=\"doSearch()\">\n        <ml-icon class=\"ico-aligned\">search</ml-icon>Search by Partner Skill/Service&nbsp;</ml-chip-button>\n    </form>\n  </ml-grid-cell>\n\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n        <form [formGroup]=\"searchBusConcepetsForm\">\n          <ml-chip-button  *ngIf=\"searchBusResults.length === 0\" id=\"bus-search\" (click)=\"doBusSearch()\">\n              <ml-icon class=\"ico-aligned\">search</ml-icon>\n              Search by Business Concepts&nbsp;</ml-chip-button>\n        </form>\n    </ml-grid-cell>\n</ml-grid>\n\n<ml-grid>\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    \n\n\n    <table ml-table shadow=\"3\" *ngIf=\"searchResults.length > 0\">\n      <tr align=\"left\">\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchResults\">\n        <td text-cell>{{kw.keyword}} </td>\n        <td text-cell>{{kw.name}}</td>\n        <td text-cell>{{kw.location}}</td>\n      </tr>\n    </table>\n  </ml-grid-cell>\n\n <ml-grid-cell width=\"6\" class=\"bg-grey\">\n   \n\n    <table ml-table shadow=\"3\" *ngIf=\"searchBusResults.length > 0\">\n      <tr>\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchBusResults\">\n        <td text-cell>{{kw.keyword}} </td>\n        <td text-cell>{{kw.name}}</td>\n        <td text-cell>{{kw.location}}</td>\n      </tr>\n    </table>\n </ml-grid-cell>\n\n\n<mdl-dialog  #makeProposalDlg class=\"mdl-dialog\">\n\n  <ml-dialog-content>\n \n    <form [formGroup]=\"proposalForm\" autocomplete=\"off\">\n       <ml-textfield [formControl]=\"proposalTitleTF\">\n        <ml-textfield-label>Title</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"minLength\">Min length 10</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"maxLength\">Max length 128</ml-error>\n      </ml-textfield>\n      <textarea [formControl]=\"proposalMessageTA\" rows=\"3\" maxrows=\"10\" id=\"styled\">\n        <ml-textfield-label>Proposal Message</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"minLength\">Min length 10</ml-error>\n      </textarea>\n    </form>\n  </ml-dialog-content>\n\n  <ml-dialog-actions>\n    <ml-button-submit [disabled]=\"!proposalForm.valid\" aspect=\"raised, colored, primary\" (click)=\"addProposal()\" ripple text=\"Submit Proposal\"></ml-button-submit>\n    <ml-button aspect=\"raised, colored, primary\" (click)=\"makeProposalDlg.close()\" ripple>Close</ml-button>\n  </ml-dialog-actions>\n\n</mdl-dialog>"
+module.exports = " \n   \n\n<ml-grid>\n <ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>\n <ml-grid-cell *ngIf=\"searchResults.length !== 0 || searchBusResults.length !== 0\"  width=\"2\">\n   <ml-button-submit (click)=\"makeProposalDlg.show()\" [disabled]=\"searchResults.length === 0 && searchBusResults.length === 0\" text=\"Create a Proposal\" aspect=\"raised\" ripple>\n\n   </ml-button-submit>\n </ml-grid-cell>\n <!--<ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>-->\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    <form [formGroup]=\"searchForm\">\n      <ml-chip-button *ngIf=\"searchResults.length === 0\" id=\"partner-search\" (click)=\"doSearch()\">\n        <ml-icon class=\"ico-aligned\">search</ml-icon>Search by Partner Skill/Service&nbsp;</ml-chip-button>\n    </form>\n  </ml-grid-cell>\n\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n        <form [formGroup]=\"searchBusConcepetsForm\">\n          <ml-chip-button  *ngIf=\"searchBusResults.length === 0\" id=\"bus-search\" (click)=\"doBusSearch()\">\n              <ml-icon class=\"ico-aligned\">search</ml-icon>\n              Search by Business Concepts&nbsp;</ml-chip-button>\n        </form>\n    </ml-grid-cell>\n<!--</ml-grid>\n\n<ml-grid>-->\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    \n    <table ml-table shadow=\"3\" *ngIf=\"searchResults.length > 0\">\n      <caption>Matched by Skills/Services</caption>\n      <tr align=\"left\">\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchResults\">\n        <td text-cell class=\"cell_wrap\">{{kw.keyword}} </td>\n        <td text-cell class=\"cell_wrap\">{{kw.name}}</td>\n        <td text-cell class=\"cell_wrap\">{{kw.location}}</td>\n      </tr>\n    </table>\n  </ml-grid-cell>\n\n <ml-grid-cell width=\"6\" class=\"bg-grey\">\n   \n\n    <table ml-table shadow=\"3\" *ngIf=\"searchBusResults.length > 0\">\n      <caption>Matched by Business Concepts</caption>\n      <tr>\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchBusResults\">\n        <td text-cell class=\"cell_wrap\">{{kw.keyword}} </td>\n        <td text-cell class=\"cell_wrap\">{{kw.name}}</td>\n        <td text-cell class=\"cell_wrap\">{{kw.location}}</td>\n      </tr>\n    </table>\n </ml-grid-cell>\n\n\n<mdl-dialog  #makeProposalDlg class=\"mdl-dialog\">\n\n  <ml-dialog-content>\n \n    <form [formGroup]=\"proposalForm\" autocomplete=\"off\">\n       <ml-textfield [formControl]=\"proposalTitleTF\">\n        <ml-textfield-label>Title</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"minLength\">Min length 10</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"maxLength\">Max length 128</ml-error>\n      </ml-textfield>\n      <textarea [formControl]=\"proposalMessageTA\" rows=\"3\" maxrows=\"10\" id=\"styled\">\n        <ml-textfield-label>Proposal Message</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"minLength\">Min length 10</ml-error>\n      </textarea>\n    </form>\n  </ml-dialog-content>\n\n  <ml-dialog-actions>\n    <ml-button-submit [disabled]=\"!proposalForm.valid\" aspect=\"raised, colored, primary\" (click)=\"addProposal()\" ripple text=\"Submit Proposal\"></ml-button-submit>\n    <ml-button aspect=\"raised, colored, primary\" (click)=\"makeProposalDlg.close()\" ripple>Close</ml-button>\n  </ml-dialog-actions>\n\n</mdl-dialog>"
 
 /***/ }),
 /* 339 */

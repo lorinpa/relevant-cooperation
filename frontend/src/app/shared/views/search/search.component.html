@@ -8,7 +8,7 @@
 
    </ml-button-submit>
  </ml-grid-cell>
- <ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>
+ <!--<ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>-->
   <ml-grid-cell width="6" class="bg-grey">
     <form [formGroup]="searchForm">
       <ml-chip-button *ngIf="searchResults.length === 0" id="partner-search" (click)="doSearch()">
@@ -23,14 +23,13 @@
               Search by Business Concepts&nbsp;</ml-chip-button>
         </form>
     </ml-grid-cell>
-</ml-grid>
+<!--</ml-grid>
 
-<ml-grid>
+<ml-grid>-->
   <ml-grid-cell width="6" class="bg-grey">
     
-
-
     <table ml-table shadow="3" *ngIf="searchResults.length > 0">
+      <caption>Matched by Skills/Services</caption>
       <tr align="left">
         <th text-cell>Skill/Serice</th>
         <th text-cell>User Name</th>
@@ -38,9 +37,9 @@
       </tr>
 
       <tr *ngFor="let kw of searchResults">
-        <td text-cell>{{kw.keyword}} </td>
-        <td text-cell>{{kw.name}}</td>
-        <td text-cell>{{kw.location}}</td>
+        <td text-cell class="cell_wrap">{{kw.keyword}} </td>
+        <td text-cell class="cell_wrap">{{kw.name}}</td>
+        <td text-cell class="cell_wrap">{{kw.location}}</td>
       </tr>
     </table>
   </ml-grid-cell>
@@ -49,6 +48,7 @@
    
 
     <table ml-table shadow="3" *ngIf="searchBusResults.length > 0">
+      <caption>Matched by Business Concepts</caption>
       <tr>
         <th text-cell>Skill/Serice</th>
         <th text-cell>User Name</th>
@@ -56,9 +56,9 @@
       </tr>
 
       <tr *ngFor="let kw of searchBusResults">
-        <td text-cell>{{kw.keyword}} </td>
-        <td text-cell>{{kw.name}}</td>
-        <td text-cell>{{kw.location}}</td>
+        <td text-cell class="cell_wrap">{{kw.keyword}} </td>
+        <td text-cell class="cell_wrap">{{kw.name}}</td>
+        <td text-cell class="cell_wrap">{{kw.location}}</td>
       </tr>
     </table>
  </ml-grid-cell>

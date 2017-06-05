@@ -1,3 +1,27 @@
 <p>
-  Welcome to the future.
+  Welcome to the Relevant Coop. 
+</p>
+
+<ol>
+  <li>Describe yourself and what you are looking for: <a [routerLink]="['/modprofile']">
+        <ml-icon>perm_identity</ml-icon>
+        Profile</a></li>
+  <li>See who matches your criteria. Make a proposal to your matches: <a [routerLink]="['/search']">   
+         <ml-icon>link</ml-icon>
+        Find Partners</a>
+  </li>
+  <li>See if others have made you a proposal:  <a [routerLink]="['proposals']">
+          <ml-icon>mail</ml-icon>
+          Proprosals
+       </a>
+      
+  </li>
+
+</ol>
+
+<p *ngIf="!isLoggedIn()">Please note! You need to be logged in to use this website's functions.
+    <a  [routerLink]="['/login']">
+         <ml-icon>person_pin</ml-icon>
+         Login
+      </a>
 </p>

@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService:UserService) {
 
+   }
+
+ isLoggedIn() {
+    return this.userService.isLoggedIn();
+  }
+  
   ngOnInit() {
   }
 

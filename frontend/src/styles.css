@@ -40,6 +40,10 @@ input {
 		
 	}
 
+.cell_wrap {
+	white-space: pre-wrap;
+}
+
 @media screen and (max-width:360px)  {
 	.scroll-pane  { overflow: auto; padding-right: 10px; height: 130px; }
 	.mdl-data-table td.mdl-data-table__cell--non-numeric {

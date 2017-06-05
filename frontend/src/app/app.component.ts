@@ -1,3 +1,4 @@
+import { MlSpinner } from './shared/components/ml/components/spinner/mlSpinner';
 import { UserProfileService } from './shared/services/user-profile-service.service';
 import { UserProfile } from './shared/models/user-profile';
 import { UserService } from './shared/services/user.service';
@@ -20,6 +21,7 @@ import { MlButton } from './shared/components/ml/components/controls/button/mlBu
 import { MlRipple } from './shared/components/ml/components/ripple/mlRipple';
 import { MlValidationError } from './shared/components/ml/components/controls/error/mlValidationError';
 import { Subscription }   from 'rxjs/Subscription';
+
 
 
 @Component({
