@@ -40,9 +40,10 @@ textarea#styled {
 
 input {
 		height:32px;
-		border: 3px solid #cccccc;
-		
+		border: 3px solid #cccccc;	
 	}
+
+
 
 .cell_wrap {
 	white-space: pre-wrap;
@@ -83,5 +84,13 @@ input {
 		padding-left: 0px;
 		text-align: left;
 		font-size: 95%;
+	}
+	
+	.shrink > div.mdl-button {
+		height: 28px;
+		line-height: 28px;
+		font-size: 12px;
+		padding-top: 1px;
+		padding-bottom: 1px;
 	}
 }
