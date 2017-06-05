@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 
 import { MlTextfieldArea } from './../../components/ml/components/controls/textfield/mlTextfieldArea';
 import { MlTable, MlTableTextCell } from './../../components/ml/components/table/mlTable';
@@ -37,6 +38,7 @@ export class SearchComponent implements OnInit {
   constructor(private keywordService: KeywordServiceService, 
       private proposalService: ProposalService,
       private dialogService: MdlDialogService,
+      private router: Router, 
       private mdlSnackbarService: MdlSnackbarService) { }
 
   ngOnInit() {
@@ -101,7 +103,16 @@ export class SearchComponent implements OnInit {
        msg => { 
          var result = JSON.parse(msg); 
           this.closePopups();
-          this.mdlSnackbarService.showSnackbar({message:'Proposal Saved. Notifications sent to partners.'});
+          this.mdlSnackbarService.showSnackbar(
+            {
+              message:'Proposal Saved. Notifications sent to partners.',
+              action: {
+                    handler: () => {   
+                       this.router.navigate(['/proposals']);
+                    },
+                    text: 'Got It.'
+              }
+            });
         
         },
         err => { this.displayError();}

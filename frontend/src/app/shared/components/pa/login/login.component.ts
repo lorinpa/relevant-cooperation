@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
  
 
-  constructor(protected userService: UserService, 
-              protected router: Router, 
-              protected route: ActivatedRoute,
-              protected mdlSnackbarService: MdlSnackbarService ,
-              protected profileService: UserProfileService
+  constructor(private userService: UserService, 
+              private router: Router, 
+              private route: ActivatedRoute,
+              private mdlSnackbarService: MdlSnackbarService ,
+              private profileService: UserProfileService
               
               ) { }
 
