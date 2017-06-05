@@ -114,7 +114,6 @@
           <div>
               <input type="text" maxlength="30" size="25"  [formControl]="filterProvidedSkills" (keyup)="providedSkillExist()" placeholder="Filter or Add"/>
               <ml-button [hidden]="!displayAddProvideSkillButton" variant="icon" aspect="raised" class="button_right" (click)="addNewProvided()"><ml-icon>add</ml-icon></ml-button>
-              <!--<ml-button small-screen-only class="button_right" variant="icon" (click)="addProvidedDialog.close()"><ml-icon>clear</ml-icon></ml-button>-->
             </div>
         </form>
       </ml-dialog-content>
@@ -146,37 +145,27 @@
 
   <ml-tab-panel id="business-concepts-panel" >
     <mdl-dialog #addBusConceptDialog class="mdl-dialog">
-  
-      <ml-button [hidden]="!displayAddBusConceptButton" aspect="raised" ripple (click)="addNewBusConcept()">
-              Add Concept
-      </ml-button>
-  
       <ml-dialog-content>
         <form [formGroup]="filterBusConceptsForm">
-            <div>             
-              <input type="text" [formControl]="filterBusConcepts"  (keyup)="providedBusConceptsExist()" placeholder="Filter or Add"/>
-            </div>
+          <ml-button variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === -1"><ml-icon>arrow_drop_down</ml-icon></ml-button>
+          <ml-button variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === 1"><ml-icon>arrow_drop_up</ml-icon></ml-button>
+          <ml-button class="button_right" variant="icon" (click)="addBusConceptDialog.close()"><ml-icon>clear</ml-icon></ml-button>
 
-          <div class="scroll-pane"> 
-              <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
-                  <thead>
-                    <tr>
-                    <th (click)="toggleSortDirection()">
-                        <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
-                        <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
-                    </th>
-                    </tr>
-                    </thead>
-                  <tr *ngFor="let kw of kwlist | keywordFilter:filterBusConcepts.value | keywordSort:sortDir ">
-                    <td text-cell (click)="addBusConceptRelationship(kw)">{{kw.keyword}}</td>
-                  </tr>
-              </table>
+          <div class="scroll-pane">
+            <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
+              <tr *ngFor="let kw of kwlist | keywordFilter:filterBusConcepts.value | keywordSort:sortDir ">
+                <td text-cell (click)="addBusConceptRelationship(kw)">{{kw.keyword}}</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <input type="text" [formControl]="filterBusConcepts" (keyup)="providedBusConceptsExist()" placeholder="Filter or Add" />
+            <ml-button [hidden]="!displayAddBusConceptButton" variant="icon" aspect="raised" class="button_right" (click)="addNewBusConcept()">
+              <ml-icon>add</ml-icon>
+            </ml-button>
           </div>
         </form>
       </ml-dialog-content>
-      <ml-dialog-actions>
-        <ml-button aspect="raised, colored, primary" (click)="addBusConceptDialog.close()" ripple>Close</ml-button>
-      </ml-dialog-actions>
     </mdl-dialog>
 
     <section>
@@ -206,39 +195,33 @@
     <!-- we can't use ml-dialog because it uses a non-standard html component <dialog> -->
     <mdl-dialog #addPartnerSkillDialog class="mdl-dialog">
      
-      <ml-button [hidden]="!displayAddPartnerSkillButton" aspect="raised" ripple (click)="addNewPartnerSkill()">
+     <!-- <ml-button [hidden]="!displayAddPartnerSkillButton" aspect="raised" ripple (click)="addNewPartnerSkill()">
               Add Skill/Service
-      </ml-button>
+      </ml-button>-->
      
      
       <ml-dialog-content>
         <form [formGroup]="filterPartnerSkillsForm">
-          <div class="row">
-            <div>
-              <input type="text" [formControl]="filterPartnerSkills" (keyup)="partnerSkillExist()" placeholder="Filter or Add"/>
-            </div>
-          </div>
+          <ml-button variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === -1"><ml-icon>arrow_drop_down</ml-icon></ml-button>
+          <ml-button variant="icon" (click)="toggleSortDirection()" *ngIf="sortDir === 1"><ml-icon>arrow_drop_up</ml-icon></ml-button>
+          <ml-button class="button_right" variant="icon" (click)="addPartnerSkillDialog.close()"><ml-icon>clear</ml-icon></ml-button>
 
           <div class="scroll-pane"> 
               <table ml-table order='asc' shadow="3" selectable="true" class="pa-table">
-                  <thead>
-                    <tr>
-                      <th (click)="toggleSortDirection()">
-                        <ml-icon *ngIf="sortDir === -1">arrow_drop_down</ml-icon>
-                        <ml-icon *ngIf="sortDir === 1">arrow_drop_up</ml-icon>
-                      </th>
-                    </tr>
-                    </thead>
                   <tr *ngFor="let kw of kwlist  | keywordFilter:filterPartnerSkills.value | keywordSort:sortDir ">
                     <td text-cell (click)="addPartnerServiceRelationship(kw)">{{kw.keyword}}</td>
                   </tr>
               </table>
           </div>
+           <div>
+              <input type="text" [formControl]="filterPartnerSkills" (keyup)="partnerSkillExist()" placeholder="Filter or Add"/>
+               <ml-button [hidden]="!displayAddPartnerSkillButton"  variant="icon" aspect="raised" class="button_right" (click)="addNewPartnerSkill()">
+                 <ml-icon>add</ml-icon>
+              </ml-button>
+             
+            </div>
         </form>
       </ml-dialog-content>
-      <ml-dialog-actions>
-        <ml-button aspect="raised, colored, primary" (click)="addPartnerSkillDialog.close()" ripple>Close</ml-button>
-      </ml-dialog-actions>
     </mdl-dialog>
 
     <section>

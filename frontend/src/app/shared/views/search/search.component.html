@@ -7,7 +7,7 @@
    <ml-button-submit *ngIf="!working" (click)="makeProposalDlg.show()" [disabled]="searchResults.length === 0 && searchBusResults.length === 0" text="Create a Proposal" aspect="raised" ripple>
    </ml-button-submit>
  </ml-grid-cell>
- <!--<ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>-->
+ <ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>
   <ml-grid-cell width="6" class="bg-grey">
     <form [formGroup]="searchForm">
       <ml-chip-button *ngIf="searchResults.length === 0 && !working" id="partner-search" (click)="doSearch()">
@@ -22,9 +22,9 @@
               Search by Business Concepts&nbsp;</ml-chip-button>
         </form>
     </ml-grid-cell>
-<!--</ml-grid>
+</ml-grid>
 
-<ml-grid>-->
+<ml-grid>
   <ml-grid-cell width="6" class="bg-grey">
     
     <table ml-table shadow="3" *ngIf="searchResults.length > 0">
@@ -61,7 +61,7 @@
       </tr>
     </table>
  </ml-grid-cell>
-
+</ml-grid>
 
 <mdl-dialog  #makeProposalDlg class="mdl-dialog">
 
