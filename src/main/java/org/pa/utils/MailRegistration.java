@@ -31,6 +31,8 @@ public class MailRegistration {
     private final String NEW_ACCOUNT = "Welcome to Relevant Coop. Your password is: ";
     private final String NEW_ACCOUNT_REMINDER = "Note! You can change your password once you have logged in successfully.";
     private final String FORGOT_PASSWORD = "Your password is: ";
+    private final String LOGIN_URL = "https://jbosswildfly-pa.rhcloud.com/co/#/login;email=%s;passwd=%s";
+    
     
     private static MailRegistration instance = null;
 
@@ -70,16 +72,19 @@ public class MailRegistration {
 
         // HTML TEXT
         messageBodyPart = new MimeBodyPart();
-        String htmlText;
+        StringBuilder sb = new StringBuilder();
         if (registration.isIsNewAccount()) {
-            htmlText = "<p>" + NEW_ACCOUNT+ registration.getPassword() + "</p>";
+            sb.append("<p style='font-size:16px;'>").append(NEW_ACCOUNT).append(registration.getPassword()).append("</p>");
+            
         } else {
-            htmlText = "<p>" +FORGOT_PASSWORD+ registration.getPassword() + "</p>";
+            sb.append( "<p style='font-size:16px;'>").append(FORGOT_PASSWORD).append(registration.getPassword()).append("</p>");
         }
-        messageBodyPart.setContent(htmlText,  "text/html; charset=utf-8");
+        String href = String.format(LOGIN_URL, registration.getEmail(), registration.getPassword());
+        sb.append("<hr/><p><a style='font-size:16px;' href='").append(href).append("'>Login Here</a></p>");
+        messageBodyPart.setContent(sb.toString(),  "text/html; charset=utf-8");
         multipart.addBodyPart(messageBodyPart);
 
-        message.setContent(multipart);
+        message.setContent(multipart, "text/html");
         Transport.send(message);
       
 

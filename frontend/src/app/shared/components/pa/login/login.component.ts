@@ -9,6 +9,7 @@ import { Form, FormGroup, FormControl, Validators} from '@angular/forms';
 import {} from '@angular-mdl';
 import { MdlSnackbarService } from "@angular-mdl/core/components";
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
 
 
 @Component({
@@ -23,11 +24,11 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
  
 
-  constructor(private userService: UserService, 
-              private router: Router, 
-              private route: ActivatedRoute,
-              private mdlSnackbarService: MdlSnackbarService ,
-              private profileService: UserProfileService
+  constructor(protected userService: UserService, 
+              protected router: Router, 
+              protected route: ActivatedRoute,
+              protected mdlSnackbarService: MdlSnackbarService ,
+              protected profileService: UserProfileService
               
               ) { }
 
@@ -71,6 +72,14 @@ export class LoginComponent implements OnInit {
           passwordTextField: this.passwordTextField,
           emailField:this.emailField
         });
+
+    if (this.route.url['_value'][0].parameters['email']) {
+        this.emailField.setValue(this.route.url['_value'][0].parameters['email']);
+    }
+
+    if (this.route.url['_value'][0].parameters['passwd']) {
+        this.passwordTextField.setValue(this.route.url['_value'][0].parameters['passwd']);
+    }
    
   }
 

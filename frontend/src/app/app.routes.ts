@@ -13,6 +13,7 @@ import { RegistrationComponent } from "app/shared/components/pa/registration/reg
 
 
 
+
 export const routes: Routes = [
   { path: 'home', component: AppComponent },
   { path: 'modprofile',  canActivate: [LoggedInGuard], component: ModifyUserProfileComponent},

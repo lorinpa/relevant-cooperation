@@ -110,7 +110,7 @@ module.exports = Array.isArray || function (arr) {
 var content = __webpack_require__(306);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(368)(content, {});
+var update = __webpack_require__(370)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -254,7 +254,7 @@ exports.push([module.i, "/* You can add global styles to this file, and also imp
 
 /***/ }),
 
-/***/ 368:
+/***/ 370:
 /***/ (function(module, exports) {
 
 /*
@@ -507,7 +507,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 379:
+/***/ 381:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(191);
@@ -2435,5 +2435,5 @@ function isnan (val) {
 
 /***/ })
 
-},[379]);
+},[381]);
 //# sourceMappingURL=styles.bundle.js.map
