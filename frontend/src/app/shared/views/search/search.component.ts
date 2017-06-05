@@ -9,7 +9,7 @@ import { MlTooltip } from './../../components/ml/components/tooltip/mlTooltip';
 
 import { Keyword } from './../../models/keyword';
 import { KeywordServiceService } from './../../services/keyword-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdlSnackbarService } from '@angular-mdl/core';
 import { Form, FormGroup, FormControl, Validators} from '@angular/forms';
 import { MdlDialogService } from '@angular-mdl/core';
@@ -24,7 +24,8 @@ import { ProposalService } from "app/shared/services/proposal.service";
 })
 export class SearchComponent implements OnInit {
 
- 
+  //@ViewChild('spinner1') spinner1;
+  working:boolean;
   searchResults = [];
 
   searchBusResults = [];
@@ -35,6 +36,8 @@ export class SearchComponent implements OnInit {
   proposalMessageTA: FormControl;
   searchBusConcepetsForm: FormGroup;
 
+  
+
   constructor(private keywordService: KeywordServiceService, 
       private proposalService: ProposalService,
       private dialogService: MdlDialogService,
@@ -42,13 +45,12 @@ export class SearchComponent implements OnInit {
       private mdlSnackbarService: MdlSnackbarService) { }
 
   ngOnInit() {
-
+    this.working = false;
     this.searchForm = new FormGroup({});
     this.searchBusConcepetsForm  = new FormGroup({});
     this.proposalTitleTF = new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(128)])
     this.proposalMessageTA = new FormControl('', [Validators.required, Validators.minLength(10)]);
-
-    this.proposalForm = new FormGroup({proposalMessageTA: this.proposalMessageTA});
+    this.proposalForm = new FormGroup({proposalTitleTF: this.proposalTitleTF, proposalMessageTA: this.proposalMessageTA});
   }
 
 
@@ -89,10 +91,12 @@ export class SearchComponent implements OnInit {
    }
 
     addProposal() {
+     this.working = true;
      var title = this.proposalTitleTF.value;
      var message =  this.proposalMessageTA.value;
      var partners = this.createPartnerIdSet();
      var proposal = new Proposal(0, title);
+     
      proposal.message = message;
      proposal.partners = partners;
      this.proposalService.addProposal(proposal).map(
@@ -115,7 +119,7 @@ export class SearchComponent implements OnInit {
             });
         
         },
-        err => { this.displayError();}
+        err => { this.displayError(); this.working = false;}
         );
    }
 

@@ -4,21 +4,20 @@
 <ml-grid>
  <ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>
  <ml-grid-cell *ngIf="searchResults.length !== 0 || searchBusResults.length !== 0"  width="2">
-   <ml-button-submit (click)="makeProposalDlg.show()" [disabled]="searchResults.length === 0 && searchBusResults.length === 0" text="Create a Proposal" aspect="raised" ripple>
-
+   <ml-button-submit *ngIf="!working" (click)="makeProposalDlg.show()" [disabled]="searchResults.length === 0 && searchBusResults.length === 0" text="Create a Proposal" aspect="raised" ripple>
    </ml-button-submit>
  </ml-grid-cell>
  <!--<ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>-->
   <ml-grid-cell width="6" class="bg-grey">
     <form [formGroup]="searchForm">
-      <ml-chip-button *ngIf="searchResults.length === 0" id="partner-search" (click)="doSearch()">
+      <ml-chip-button *ngIf="searchResults.length === 0 && !working" id="partner-search" (click)="doSearch()">
         <ml-icon class="ico-aligned">search</ml-icon>Search by Partner Skill/Service&nbsp;</ml-chip-button>
     </form>
   </ml-grid-cell>
 
   <ml-grid-cell width="6" class="bg-grey">
         <form [formGroup]="searchBusConcepetsForm">
-          <ml-chip-button  *ngIf="searchBusResults.length === 0" id="bus-search" (click)="doBusSearch()">
+          <ml-chip-button  *ngIf="searchBusResults.length === 0 && !working" id="bus-search" (click)="doBusSearch()">
               <ml-icon class="ico-aligned">search</ml-icon>
               Search by Business Concepts&nbsp;</ml-chip-button>
         </form>
