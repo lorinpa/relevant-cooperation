@@ -84,8 +84,12 @@
   </ml-dialog-content>
 
   <ml-dialog-actions>
-    <ml-button-submit [disabled]="!proposalForm.valid" aspect="raised, colored, primary" (click)="addProposal()" ripple text="Submit Proposal"></ml-button-submit>
-    <ml-button aspect="raised, colored, primary" (click)="makeProposalDlg.close()" ripple>Close</ml-button>
+    <ml-button-submit large-screen-only [disabled]="!proposalForm.valid" aspect="raised, colored, primary" (click)="addProposal()" ripple text="Publish Proposal"></ml-button-submit>
+    <ml-button-submit small-screen-only [disabled]="!proposalForm.valid" aspect="raised" (click)="addProposal()" ripple text="Publish"></ml-button-submit>
+    
+    
+    <ml-button large-screen-only aspect="raised, colored, primary" (click)="makeProposalDlg.close()" ripple>Close</ml-button>
+    <ml-button small-screen-only class="button_right" variant="icon" (click)="makeProposalDlg.close()"><ml-icon>clear</ml-icon></ml-button>
   </ml-dialog-actions>
 
 </mdl-dialog>
