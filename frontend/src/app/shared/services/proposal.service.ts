@@ -20,6 +20,9 @@ export class ProposalService {
   private partner_proposals = new Subject<Proposal[]>();
   partner_proposals$ = this.partner_proposals.asObservable();
 
+  private public_proposals = new Subject<Proposal[]>();
+  public_proposals$ = this.public_proposals.asObservable();
+
   constructor(private http: Http,private userService: UserService) { }
 
 
@@ -56,6 +59,21 @@ export class ProposalService {
       .get('/co/api/proposal/partner',  {headers})
       .catch(this.handleError);
   }
+
+   getPublicProposals() : Observable<Response> {
+    let bearerToken =  this.userService.getBearerToken();
+    let headers = new Headers();
+    headers.append('Authorization', bearerToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http
+      .get('/co/api/proposal/public',  {headers})
+      .catch(this.handleError);
+  }
+
+  publishPublicProposals(proposals: Proposal[]) {
+     this.public_proposals.next(proposals);
+  }
+
 
   updateProposal(proposal:Proposal) : Observable<Response> {
     let bearerToken =  this.userService.getBearerToken();

@@ -9,8 +9,8 @@ import { KeywordsComponent } from './shared/views/keywords/keywords.component';
 import { Routes } from '@angular/router';
 import {AppComponent} from './app.component';
 import { ProposalsComponent } from "app/shared/views/proposals/proposals.component";
+import { PublicProposalsComponent } from "app/shared/views/proposals/public-proposals.component";
 import { RegistrationComponent } from "app/shared/components/pa/registration/registration.component";
-
 
 
 
@@ -25,6 +25,7 @@ export const routes: Routes = [
   { path: 'proposals', canActivate: [LoggedInGuard], component: ProposalsComponent},
   { path: 'my-proposals', canActivate: [LoggedInGuard], component: MyProposalsComponent},
   { path: 'partner-proposals', canActivate: [LoggedInGuard], component: PartnerProposalsComponent},
+  { path: 'public-proposals', canActivate: [LoggedInGuard], component: PublicProposalsComponent},
   {path: '**', component: FrontPageComponent }
   
 ];

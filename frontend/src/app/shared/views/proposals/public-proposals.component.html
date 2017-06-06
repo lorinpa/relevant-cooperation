@@ -1,21 +1,24 @@
-<p>Proposals Made By Others (to me)</p>
+<p>
+  public-proposals works!
+</p>
 
-<table ml-table shadow="3" *ngIf="partner_proposals.length > 0">
+
+<table ml-table shadow="3" *ngIf="public_proposals.length > 0">
       <tr>
         <th text-cell>Date</th>
      
         <th text-cell>Title</th>
     
         <th>Details</th>
-        <th>Dismiss</th>
+      
       
       </tr>
 
-      <tr *ngFor="let kw of partner_proposals">
+      <tr *ngFor="let kw of public_proposals">
         <td text-cell>{{kw.createdAt}} </td>
         <td text-cell class="cell_wrap">{{kw.title}}</td>
         <td><ml-button variant="icon" aspect="raised" (click)="selectProposalById(kw.id); detailDlg.show()"><ml-icon>zoom_in</ml-icon></ml-button></td>
-        <td><ml-button variant="icon" aspect="raised" (click)="dismissPartnerProposal(kw.id)"><ml-icon>visibility_off</ml-icon></ml-button></td>
+       
       </tr>
     </table>
 
@@ -25,6 +28,8 @@
          <div>{{selected_proposal.title}}</div>
          <hr/>
          <div>Email:&nbsp;<a href="mailto:{{selected_proposal.ownerEmail}}">{{selected_proposal.ownerEmail}}</a></div>
+         <hr/>
+         <div>User Name:&nbsp;{{selected_proposal.ownerName}}</div>
          <hr/>
          <div class="scroll-pane"> 
               <div  class="pa-table">{{selected_proposal.message}}</div>

@@ -100,6 +100,17 @@ public class ProposalRepository extends CommonRepository {
           return list;  
     }
     
+     public List<PartnerProposalDTO> getPublicProposals(String subjectName) {
+          EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+          Query q = em.createQuery("select new org.pa.dto.PartnerProposalDTO(a.id, a.userProfile.name, a.userProfile.user.email, a.title, a.message, a.createdAt) from Proposal a where a.is_private = false and a.userProfile.user.email != ?1 order by a.createdAt");
+          q.setParameter(1, subjectName);
+          em.getTransaction().begin();
+          List<PartnerProposalDTO> list = q.getResultList();
+          em.getTransaction().commit();
+          em.close();
+          return list;  
+    }
+    
     public ProposalDTO updateProposal(String subjectName, ProposalDTO proposalDTO) throws Exception {
         EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         

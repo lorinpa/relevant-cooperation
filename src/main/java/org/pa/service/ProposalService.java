@@ -65,6 +65,24 @@ public class ProposalService extends CommonService {
         return Response.ok(list, MediaType.APPLICATION_JSON).build();
     }
     
+     
+    @GET
+    @Path("/public")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response getPublicProposals(@Context javax.servlet.http.HttpServletRequest request, ProposalDTO proposalDTO) {
+        String subj = (String) request.getAttribute("subj");
+        List<PartnerProposalDTO> list;
+        try {   
+            list = ProposalRepository.getInstance().getPublicProposals(subj);
+        } catch (Exception ex) {
+           SimpleErrorMessage errorMessage = new SimpleErrorMessage(ex.getMessage());
+           return Response.status(Response.Status.NOT_ACCEPTABLE).entity(errorMessage).build();
+        }
+        return Response.ok(list, MediaType.APPLICATION_JSON).build();
+    }
+    
+    
     @POST
     @Produces("application/json")
     @Consumes("application/json")

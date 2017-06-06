@@ -53,6 +53,7 @@ import { MyProposalsComponent } from './shared/views/proposals/my.proposals.comp
 import { PartnerProposalsComponent } from "app/shared/views/proposals/partner.proposals.component";
 import { ProposalsComponent } from './shared/views/proposals/proposals.component';
 import { RegistrationComponent } from './shared/components/pa/registration/registration.component';
+import { PublicProposalsComponent } from './shared/views/proposals/public-proposals.component';
 
 
 
@@ -70,7 +71,8 @@ import { RegistrationComponent } from './shared/components/pa/registration/regis
     MyProposalsComponent,
     PartnerProposalsComponent,
     ProposalsComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PublicProposalsComponent
   ],
   imports: [
     BrowserModule,

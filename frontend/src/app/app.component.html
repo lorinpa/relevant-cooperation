@@ -32,7 +32,12 @@
       
        <a nav-item [routerLink]="['proposals']">
           <ml-icon>mail</ml-icon>
-          Proprosals
+          My Proprosals
+       </a>
+
+        <a nav-item [routerLink]="['public-proposals']">
+          <ml-icon>folder_open</ml-icon>
+          Public Proprosals
        </a>
      
      <!-- <a nav-item>
@@ -52,7 +57,9 @@
     </ml-nav>
   </ml-drawer>
 
-  <ml-content-loader spinner (onLoading)="onLoading($event)"></ml-content-loader>
+  <ml-content-loader spinner (onLoading)="onLoading($event)">
+    <div>Starting app. Please wait.</div>
+  </ml-content-loader>
   <ml-content [hidden]="isLoading" style="padding-left: 12px">  
      <router-outlet></router-outlet>
      <dialog-outlet></dialog-outlet>
