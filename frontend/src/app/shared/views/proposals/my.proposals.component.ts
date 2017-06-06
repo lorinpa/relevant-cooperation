@@ -38,7 +38,10 @@ export class MyProposalsComponent implements OnInit {
     this.messageTF = new FormControl('', [Validators.required, Validators.minLength(10)]);
     this.visibility = new FormControl(false);
     this.proposalForm = new FormGroup({titleTF: this.titleTF, messageTF: this.messageTF, visibility: this.visibility});
-  }
+    this.visibility.valueChanges.subscribe(value => {
+      this.visibility_label = value === true ? "Private" : "Public";
+    });
+ }
 
   getMyProposals() {
      var responseData = {};
@@ -62,6 +65,7 @@ export class MyProposalsComponent implements OnInit {
      
      this.selected_proposal.title = this.titleTF.value;
      this.selected_proposal.message = this.messageTF.value;
+     this.selected_proposal.is_private = this.visibility.value;
      
      this.proposalService.updateProposal(this.selected_proposal).map(
        res => {
@@ -95,6 +99,8 @@ export class MyProposalsComponent implements OnInit {
       });
       this.titleTF.setValue(this.selected_proposal.title);
       this.messageTF.setValue(this.selected_proposal.message);
+      this.visibility.setValue(this.selected_proposal.is_private);
+      this.visibility_label = this.selected_proposal.is_private === true ?  "Private" : "Public";
    }
 
 
@@ -135,7 +141,9 @@ export class MyProposalsComponent implements OnInit {
     }
 
     toggleVisbilityLabel() {
-        this.visibility_label = this.visibility.value === true ? "Private" : "Public";
+        this.visibility_label = this.visibility_label === "Private" ?  "Public" : "Private";
+       //this.visibility_label = this.visibility.value === true ?  "Private" : "Public";
     }
+
 
 }

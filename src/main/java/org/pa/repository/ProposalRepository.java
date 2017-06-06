@@ -44,6 +44,7 @@ public class ProposalRepository extends CommonRepository {
         proposal.setCreatedAt(new Date(System.currentTimeMillis()));
         proposal.setTitle(proposalDTO.getTitle());
         proposal.setMessage(proposalDTO.getMessage());
+        proposal.setIs_private(proposalDTO.isIs_private());
         Query q = em.createQuery("select a from UserProfile a where a.user.email = ?1");
         q.setParameter(1, subjectName);
         UserProfile owner = (UserProfile) q.getSingleResult();
@@ -79,7 +80,7 @@ public class ProposalRepository extends CommonRepository {
     
     public List<ProposalDTO> getMyProposals(String subjectName) {
           EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
-          Query q = em.createQuery("select new org.pa.dto.ProposalDTO(a.id, a.title, a.message, a.createdAt) from Proposal a where a.userProfile.user.email = ?1");
+          Query q = em.createQuery("select new org.pa.dto.ProposalDTO(a.id, a.title, a.message, a.createdAt, a.is_private) from Proposal a where a.userProfile.user.email = ?1");
           q.setParameter(1, subjectName);
           em.getTransaction().begin();
           List<ProposalDTO> list = q.getResultList();
@@ -110,6 +111,7 @@ public class ProposalRepository extends CommonRepository {
             Proposal p = (Proposal) q.getSingleResult(); 
             p.setTitle((proposalDTO.getTitle()));
             p.setMessage(proposalDTO.getMessage());
+            p.setIs_private(proposalDTO.isIs_private());
             em.merge(p);
             em.getTransaction().commit();
             

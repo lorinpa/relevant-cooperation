@@ -20,6 +20,7 @@ public class ProposalDTO implements Serializable {
     private String title;
     private String message;
     private String createdAt;
+    private boolean is_private;
     private List<Long> partners;
     
    protected final SimpleDateFormat date_format = new SimpleDateFormat("MM-dd-yy");
@@ -33,11 +34,20 @@ public class ProposalDTO implements Serializable {
         this.createdAt = createdAt;
     }
     
-    public ProposalDTO(Long id, String title, String message, Date date) {
+     public ProposalDTO(Long id, String title, String message, Date date) {
         this.id = id;
         this.title = title;
         this.message = message;
         this.createdAt = date_format.format(date);
+        
+    }
+    
+    public ProposalDTO(Long id, String title, String message, Date date, boolean is_private) {
+        this.id = id;
+        this.title = title;
+        this.message = message;
+        this.createdAt = date_format.format(date);
+        this.is_private = is_private;
     }
 
     public Long getId() {
@@ -78,6 +88,14 @@ public class ProposalDTO implements Serializable {
 
     public void setPartners(List<Long> partners) {
         this.partners = partners;
+    }
+
+    public boolean isIs_private() {
+        return is_private;
+    }
+
+    public void setIs_private(boolean is_private) {
+        this.is_private = is_private;
     }
     
     

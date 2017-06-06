@@ -1084,6 +1084,7 @@ var Proposal = (function () {
         this.message;
         this.createdAt;
         this.partners;
+        this.is_private;
     }
     return Proposal;
 }());
@@ -2243,11 +2244,15 @@ var MyProposalsComponent = (function () {
         });
     }
     MyProposalsComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.getMyProposals();
         this.titleTF = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(10), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(128)]);
         this.messageTF = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(10)]);
         this.visibility = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormControl */](false);
         this.proposalForm = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* FormGroup */]({ titleTF: this.titleTF, messageTF: this.messageTF, visibility: this.visibility });
+        this.visibility.valueChanges.subscribe(function (value) {
+            _this.visibility_label = value === true ? "Private" : "Public";
+        });
     };
     MyProposalsComponent.prototype.getMyProposals = function () {
         var _this = this;
@@ -2268,6 +2273,7 @@ var MyProposalsComponent = (function () {
         var _this = this;
         this.selected_proposal.title = this.titleTF.value;
         this.selected_proposal.message = this.messageTF.value;
+        this.selected_proposal.is_private = this.visibility.value;
         this.proposalService.updateProposal(this.selected_proposal).map(function (res) {
             if (res.ok) {
                 return res['_body'];
@@ -2297,6 +2303,8 @@ var MyProposalsComponent = (function () {
         });
         this.titleTF.setValue(this.selected_proposal.title);
         this.messageTF.setValue(this.selected_proposal.message);
+        this.visibility.setValue(this.selected_proposal.is_private);
+        this.visibility_label = this.selected_proposal.is_private === true ? "Private" : "Public";
     };
     MyProposalsComponent.prototype.deleteProposal = function (id) {
         var _this = this;
@@ -2329,7 +2337,8 @@ var MyProposalsComponent = (function () {
         }
     };
     MyProposalsComponent.prototype.toggleVisbilityLabel = function () {
-        this.visibility_label = this.visibility.value === true ? "Private" : "Public";
+        this.visibility_label = this.visibility_label === "Private" ? "Public" : "Private";
+        //this.visibility_label = this.visibility.value === true ?  "Private" : "Public";
     };
     return MyProposalsComponent;
 }());
@@ -2507,6 +2516,7 @@ var SearchComponent = (function () {
         this.visibility_label = "Private";
     }
     SearchComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.working = false;
         this.searchForm = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["g" /* FormGroup */]({});
         this.searchBusConcepetsForm = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["g" /* FormGroup */]({});
@@ -2515,6 +2525,9 @@ var SearchComponent = (function () {
         this.visibility = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["e" /* FormControl */](false);
         this.proposalForm = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["g" /* FormGroup */]({ proposalTitleTF: this.proposalTitleTF,
             proposalMessageTA: this.proposalMessageTA, visibility: this.visibility });
+        this.visibility.valueChanges.subscribe(function (value) {
+            _this.visibility_label = value === true ? "Private" : "Public";
+        });
     };
     SearchComponent.prototype.doSearch = function () {
         var _this = this;
@@ -2553,6 +2566,7 @@ var SearchComponent = (function () {
         var message = this.proposalMessageTA.value;
         var partners = this.createPartnerIdSet();
         var proposal = new __WEBPACK_IMPORTED_MODULE_5_app_shared_models_proposal__["b" /* Proposal */](0, title);
+        proposal.is_private = this.visibility.value;
         proposal.message = message;
         proposal.partners = partners;
         this.proposalService.addProposal(proposal).map(function (res) {
@@ -2611,10 +2625,10 @@ var SearchComponent = (function () {
         return Array.from(partnerIds);
     };
     SearchComponent.prototype.toggleVisbilityLabel = function () {
-        this.visibility_label = this.visibility.value === true ? "Private" : "Public";
+        this.visibility_label = this.visibility.value === true ? "Public" : "Private";
     };
     SearchComponent.prototype.setDefaultVisibility = function () {
-        this.visibility.setValue(false);
+        this.visibility.setValue(true);
         this.visibility_label = "Private";
     };
     return SearchComponent;
@@ -8432,7 +8446,7 @@ module.exports = "<ml-list >\n    <ml-item *ngFor=\"let kw of keywords\" ripple>
 /* 335 */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  My Proposals\n</p>\n\n\n\n<table ml-table shadow=\"3\" *ngIf=\"my_proposals.length > 0\">\n      <tr>\n        <th text-cell>Date</th>\n        <th text-cell>Title</th>\n        <th text-cell>Details</th>\n        <th text-cell>Delete</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of my_proposals\">\n        <td text-cell>{{kw.createdAt}} </td>\n        <td text-cell style=\"white-space: pre-wrap;\">{{kw.title}}</td>\n        <td text-cell><ml-button variant=\"icon\" aspect=\"raised\" (click)=\"selectProposalById(kw.id); editDlg.show()\"><ml-icon>edit</ml-icon></ml-button></td>\n        <td text-cell><ml-button variant=\"icon\" aspect=\"raised\" (click)=\"deleteProposal(kw.id)\"><ml-icon>delete</ml-icon></ml-button></td>\n      </tr>\n    </table>\n\n\n    <mdl-dialog #editDlg class=\"mdl-dialog\">\n      <ml-dialog-content>\n         \n         <form [formGroup]=\"proposalForm\" autocomplete=\"off\">\n       <ml-textfield [formControl]=\"titleTF\">\n        <ml-textfield-label>Title</ml-textfield-label>\n        <ml-error [validateControl]=\"titleTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"titleTF\" validator=\"minLength\">Min length 10</ml-error>\n        <ml-error [validateControl]=\"titleTF\" validator=\"maxLength\">Max length 128</ml-error>\n      </ml-textfield>\n      <textarea [formControl]=\"messageTF\" rows=\"3\" maxrows=\"10\" id=\"styled\">\n      \n        <ml-textfield-label>Proposal Message</ml-textfield-label>\n        <ml-error [validateControl]=\"messageTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"messageTF\" validator=\"minLength\">Min length 10</ml-error>\n      </textarea>\n    </form>\n  </ml-dialog-content>\n\n  <ml-dialog-actions>\n    <ml-button-submit large-screen-only [disabled]=\"!proposalForm.valid\" aspect=\"raised, colored, primary\" (click)=\"updateProposal()\" ripple text=\"Update Proposal\"></ml-button-submit>\n    <ml-button-submit small-screen-only class=\"shrink\" [disabled]=\"!proposalForm.valid\" aspect=\"raised\" (click)=\"updateProposal()\" ripple text=\"Update\"></ml-button-submit>\n    <ml-switch id=\"visibility_id\" (click)=\"toggleVisbilityLabel()\" [formControl]=\"visibility\" ripple>{{visibility_label}}</ml-switch>\n    <ml-button large-screen-only aspect=\"raised, colored, primary\" (click)=\"editDlg.close(); clearSelectedProposal()\" ripple>Close</ml-button>\n    <ml-button small-screen-only class=\"button_right\" variant=\"icon\" (click)=\"editDlg.close(); clearSelectedProposal()\"><ml-icon>clear</ml-icon></ml-button>\n  </ml-dialog-actions>\n      \n    </mdl-dialog>"
+module.exports = "<p>\n  My Proposals\n</p>\n\n\n\n<table ml-table shadow=\"3\" *ngIf=\"my_proposals.length > 0\">\n      <tr>\n        <th text-cell>Date</th>\n        <th text-cell>Title</th>\n        <th text-cell>Details</th>\n        <th text-cell>Delete</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of my_proposals\">\n        <td text-cell>{{kw.createdAt}} </td>\n        <td text-cell style=\"white-space: pre-wrap;\">{{kw.title}}</td>\n        <td text-cell><ml-button variant=\"icon\" aspect=\"raised\" (click)=\"selectProposalById(kw.id); editDlg.show()\"><ml-icon>edit</ml-icon></ml-button></td>\n        <td text-cell><ml-button variant=\"icon\" aspect=\"raised\" (click)=\"deleteProposal(kw.id)\"><ml-icon>delete</ml-icon></ml-button></td>\n      </tr>\n    </table>\n\n\n    <mdl-dialog #editDlg class=\"mdl-dialog\">\n      <ml-dialog-content>\n         \n         <form [formGroup]=\"proposalForm\" autocomplete=\"off\">\n       <ml-textfield [formControl]=\"titleTF\">\n        <ml-textfield-label>Title</ml-textfield-label>\n        <ml-error [validateControl]=\"titleTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"titleTF\" validator=\"minLength\">Min length 10</ml-error>\n        <ml-error [validateControl]=\"titleTF\" validator=\"maxLength\">Max length 128</ml-error>\n      </ml-textfield>\n      <textarea [formControl]=\"messageTF\" rows=\"3\" maxrows=\"10\" id=\"styled\">\n      \n        <ml-textfield-label>Proposal Message</ml-textfield-label>\n        <ml-error [validateControl]=\"messageTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"messageTF\" validator=\"minLength\">Min length 10</ml-error>\n      </textarea>\n    </form>\n  </ml-dialog-content>\n\n  <ml-dialog-actions>\n    <ml-button-submit large-screen-only [disabled]=\"!proposalForm.valid\" aspect=\"raised, colored, primary\" (click)=\"updateProposal()\" ripple text=\"Update Proposal\"></ml-button-submit>\n    <ml-button-submit small-screen-only class=\"shrink\" [disabled]=\"!proposalForm.valid\" aspect=\"raised\" (click)=\"updateProposal()\" ripple text=\"Update\"></ml-button-submit>\n    <ml-switch id=\"visibility_id\"  [formControl]=\"visibility\" ripple>{{visibility_label}}</ml-switch>\n   <!-- <ml-switch id=\"visibility_id\" (click)=\"toggleVisbilityLabel()\" [formControl]=\"visibility\" ripple>{{visibility_label}}</ml-switch>-->\n    <ml-button large-screen-only aspect=\"raised, colored, primary\" (click)=\"editDlg.close(); clearSelectedProposal()\" ripple>Close</ml-button>\n    <ml-button small-screen-only class=\"button_right\" variant=\"icon\" (click)=\"editDlg.close(); clearSelectedProposal()\"><ml-icon>clear</ml-icon></ml-button>\n  </ml-dialog-actions>\n      \n    </mdl-dialog>"
 
 /***/ }),
 /* 336 */
@@ -8450,7 +8464,7 @@ module.exports = "\n\n\n<ml-tabs ripple>\n\n  \n  <ml-tabs-bar>\n      <div ml-t
 /* 338 */
 /***/ (function(module, exports) {
 
-module.exports = " \n   \n\n<ml-grid>\n <ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>\n <ml-grid-cell *ngIf=\"searchResults.length !== 0 || searchBusResults.length !== 0\"  width=\"2\">\n   <ml-button-submit *ngIf=\"!working\" (click)=\"makeProposalDlg.show();setDefaultVisibility()\" [disabled]=\"searchResults.length === 0 && searchBusResults.length === 0\" text=\"Create a Proposal\" aspect=\"raised\" ripple>\n   </ml-button-submit>\n </ml-grid-cell>\n <ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    <form [formGroup]=\"searchForm\">\n      <ml-chip-button *ngIf=\"searchResults.length === 0 && !working\" id=\"partner-search\" (click)=\"doSearch()\">\n        <ml-icon class=\"ico-aligned\">search</ml-icon>Search by Partner Skill/Service&nbsp;</ml-chip-button>\n    </form>\n  </ml-grid-cell>\n\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n        <form [formGroup]=\"searchBusConcepetsForm\">\n          <ml-chip-button  *ngIf=\"searchBusResults.length === 0 && !working\" id=\"bus-search\" (click)=\"doBusSearch()\">\n              <ml-icon class=\"ico-aligned\">search</ml-icon>\n              Search by Business Concepts&nbsp;</ml-chip-button>\n        </form>\n    </ml-grid-cell>\n</ml-grid>\n\n<ml-grid>\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    \n    <table ml-table shadow=\"3\" *ngIf=\"searchResults.length > 0\">\n      <caption>Matched by Skills/Services</caption>\n      <tr align=\"left\">\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchResults\">\n        <td text-cell class=\"cell_wrap\">{{kw.keyword}} </td>\n        <td text-cell class=\"cell_wrap\">{{kw.name}}</td>\n        <td text-cell class=\"cell_wrap\">{{kw.location}}</td>\n      </tr>\n    </table>\n  </ml-grid-cell>\n\n <ml-grid-cell width=\"6\" class=\"bg-grey\">\n   \n\n    <table ml-table shadow=\"3\" *ngIf=\"searchBusResults.length > 0\">\n      <caption>Matched by Business Concepts</caption>\n      <tr>\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchBusResults\">\n        <td text-cell class=\"cell_wrap\">{{kw.keyword}} </td>\n        <td text-cell class=\"cell_wrap\">{{kw.name}}</td>\n        <td text-cell class=\"cell_wrap\">{{kw.location}}</td>\n      </tr>\n    </table>\n </ml-grid-cell>\n</ml-grid>\n\n<mdl-dialog  #makeProposalDlg class=\"mdl-dialog\">\n\n  <ml-dialog-content>\n \n    <form [formGroup]=\"proposalForm\" autocomplete=\"off\">\n       <ml-textfield [formControl]=\"proposalTitleTF\">\n        <ml-textfield-label>Title</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"minLength\">Min length 10</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"maxLength\">Max length 128</ml-error>\n      </ml-textfield>\n      <textarea [formControl]=\"proposalMessageTA\" rows=\"3\" maxrows=\"10\" id=\"styled\">\n        <ml-textfield-label>Proposal Message</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"minLength\">Min length 10</ml-error>\n      </textarea>\n    </form>\n  </ml-dialog-content>\n\n  <ml-dialog-actions>\n    <ml-button-submit large-screen-only [disabled]=\"!proposalForm.valid\" aspect=\"raised, colored, primary\" (click)=\"addProposal()\" ripple text=\"Publish Proposal\"></ml-button-submit>\n    <ml-button-submit small-screen-only class=\"shrink\" [disabled]=\"!proposalForm.valid\" aspect=\"raised\" (click)=\"addProposal()\" ripple text=\"Publish\"></ml-button-submit>\n    <ml-switch id=\"visibility_id\" (click)=\"toggleVisbilityLabel()\" [formControl]=\"visibility\" ripple>{{visibility_label}}</ml-switch>\n    \n    <ml-button large-screen-only aspect=\"raised, colored, primary\" (click)=\"makeProposalDlg.close()\" ripple>Close</ml-button>\n    <ml-button small-screen-only class=\"button_right\" variant=\"icon\" (click)=\"makeProposalDlg.close()\"><ml-icon>clear</ml-icon></ml-button>\n  </ml-dialog-actions>\n\n</mdl-dialog>"
+module.exports = " \n   \n\n<ml-grid>\n <ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>\n <ml-grid-cell *ngIf=\"searchResults.length !== 0 || searchBusResults.length !== 0\"  width=\"2\">\n   <ml-button-submit *ngIf=\"!working\" (click)=\"makeProposalDlg.show();setDefaultVisibility()\" [disabled]=\"searchResults.length === 0 && searchBusResults.length === 0\" text=\"Create a Proposal\" aspect=\"raised\" ripple>\n   </ml-button-submit>\n </ml-grid-cell>\n <ml-grid-cell width=\"5\" class=\"bg-grey\">&nbsp;</ml-grid-cell>\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    <form [formGroup]=\"searchForm\">\n      <ml-chip-button *ngIf=\"searchResults.length === 0 && !working\" id=\"partner-search\" (click)=\"doSearch()\">\n        <ml-icon class=\"ico-aligned\">search</ml-icon>Search by Partner Skill/Service&nbsp;</ml-chip-button>\n    </form>\n  </ml-grid-cell>\n\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n        <form [formGroup]=\"searchBusConcepetsForm\">\n          <ml-chip-button  *ngIf=\"searchBusResults.length === 0 && !working\" id=\"bus-search\" (click)=\"doBusSearch()\">\n              <ml-icon class=\"ico-aligned\">search</ml-icon>\n              Search by Business Concepts&nbsp;</ml-chip-button>\n        </form>\n    </ml-grid-cell>\n</ml-grid>\n\n<ml-grid>\n  <ml-grid-cell width=\"6\" class=\"bg-grey\">\n    \n    <table ml-table shadow=\"3\" *ngIf=\"searchResults.length > 0\">\n      <caption>Matched by Skills/Services</caption>\n      <tr align=\"left\">\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchResults\">\n        <td text-cell class=\"cell_wrap\">{{kw.keyword}} </td>\n        <td text-cell class=\"cell_wrap\">{{kw.name}}</td>\n        <td text-cell class=\"cell_wrap\">{{kw.location}}</td>\n      </tr>\n    </table>\n  </ml-grid-cell>\n\n <ml-grid-cell width=\"6\" class=\"bg-grey\">\n   \n\n    <table ml-table shadow=\"3\" *ngIf=\"searchBusResults.length > 0\">\n      <caption>Matched by Business Concepts</caption>\n      <tr>\n        <th text-cell>Skill/Serice</th>\n        <th text-cell>User Name</th>\n        <th text-cell>Location</th>\n      </tr>\n\n      <tr *ngFor=\"let kw of searchBusResults\">\n        <td text-cell class=\"cell_wrap\">{{kw.keyword}} </td>\n        <td text-cell class=\"cell_wrap\">{{kw.name}}</td>\n        <td text-cell class=\"cell_wrap\">{{kw.location}}</td>\n      </tr>\n    </table>\n </ml-grid-cell>\n</ml-grid>\n\n<mdl-dialog  #makeProposalDlg class=\"mdl-dialog\">\n\n  <ml-dialog-content>\n \n    <form [formGroup]=\"proposalForm\" autocomplete=\"off\">\n       <ml-textfield [formControl]=\"proposalTitleTF\">\n        <ml-textfield-label>Title</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"minLength\">Min length 10</ml-error>\n        <ml-error [validateControl]=\"proposalTitleTF\" validator=\"maxLength\">Max length 128</ml-error>\n      </ml-textfield>\n      <textarea [formControl]=\"proposalMessageTA\" rows=\"3\" maxrows=\"10\" id=\"styled\">\n        <ml-textfield-label>Proposal Message</ml-textfield-label>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"required\">Required</ml-error>\n        <ml-error [validateControl]=\"proposalMessageTA\" validator=\"minLength\">Min length 10</ml-error>\n      </textarea>\n    </form>\n  </ml-dialog-content>\n\n  <ml-dialog-actions>\n    <ml-button-submit large-screen-only [disabled]=\"!proposalForm.valid\" aspect=\"raised, colored, primary\" (click)=\"addProposal()\" ripple text=\"Publish Proposal\"></ml-button-submit>\n    <ml-button-submit small-screen-only class=\"shrink\" [disabled]=\"!proposalForm.valid\" aspect=\"raised\" (click)=\"addProposal()\" ripple text=\"Publish\"></ml-button-submit>\n    <ml-switch id=\"visibility_id\" [formControl]=\"visibility\" ripple>{{visibility_label}}</ml-switch>\n    \n    <ml-button large-screen-only aspect=\"raised, colored, primary\" (click)=\"makeProposalDlg.close()\" ripple>Close</ml-button>\n    <ml-button small-screen-only class=\"button_right\" variant=\"icon\" (click)=\"makeProposalDlg.close()\"><ml-icon>clear</ml-icon></ml-button>\n  </ml-dialog-actions>\n\n</mdl-dialog>"
 
 /***/ }),
 /* 339 */

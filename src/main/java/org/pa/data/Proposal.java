@@ -45,6 +45,9 @@ public class Proposal implements Serializable  {
     @Column(name = "title", nullable = false, length = 128)
     private String title;
     
+    @Column(name = "is_private", nullable = false)
+    private boolean is_private = true;
+    
     
     @Lob
     @Column(name = "message",  nullable = false)
@@ -103,6 +106,14 @@ public class Proposal implements Serializable  {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public boolean isIs_private() {
+        return is_private;
+    }
+
+    public void setIs_private(boolean is_private) {
+        this.is_private = is_private;
     }
     
     

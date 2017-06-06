@@ -40,8 +40,6 @@ export class SearchComponent implements OnInit {
   searchBusConcepetsForm: FormGroup;
 
 
-  
-
   constructor(private keywordService: KeywordServiceService, 
       private proposalService: ProposalService,
       private dialogService: MdlDialogService,
@@ -57,6 +55,10 @@ export class SearchComponent implements OnInit {
     this.visibility = new FormControl(false);
     this.proposalForm = new FormGroup({proposalTitleTF: this.proposalTitleTF, 
       proposalMessageTA: this.proposalMessageTA, visibility:this.visibility});
+    
+    this.visibility.valueChanges.subscribe(value => {
+      this.visibility_label = value === true ? "Private" : "Public";
+    });
   }
 
 
@@ -102,7 +104,7 @@ export class SearchComponent implements OnInit {
      var message =  this.proposalMessageTA.value;
      var partners = this.createPartnerIdSet();
      var proposal = new Proposal(0, title);
-     
+     proposal.is_private = this.visibility.value;
      proposal.message = message;
      proposal.partners = partners;
      this.proposalService.addProposal(proposal).map(
@@ -177,11 +179,11 @@ export class SearchComponent implements OnInit {
  }
 
  toggleVisbilityLabel() {
-        this.visibility_label = this.visibility.value === true ? "Private" : "Public";
+        this.visibility_label = this.visibility.value === true ?  "Public" : "Private";
  }
 
  setDefaultVisibility() {
-   this.visibility.setValue(false);
+   this.visibility.setValue(true);
    this.visibility_label = "Private";
  }
 

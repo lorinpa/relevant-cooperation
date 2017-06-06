@@ -5,6 +5,7 @@ import { IdInterface } from './id-interface';
      title:string;
      message:string;
      createdAt:string;
+     is_private:boolean;
      partners: number[];
 
      constructor(id:number, title:string) {
@@ -13,6 +14,7 @@ import { IdInterface } from './id-interface';
          this.message;
          this.createdAt;
          this.partners;
+         this.is_private;
      }
 }
 
