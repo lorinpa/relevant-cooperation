@@ -34,7 +34,11 @@ export class SearchComponent implements OnInit {
 
   proposalTitleTF: FormControl;
   proposalMessageTA: FormControl;
+  visibility: FormControl;
+  visibility_label = "Private";
+
   searchBusConcepetsForm: FormGroup;
+
 
   
 
@@ -50,7 +54,9 @@ export class SearchComponent implements OnInit {
     this.searchBusConcepetsForm  = new FormGroup({});
     this.proposalTitleTF = new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(128)])
     this.proposalMessageTA = new FormControl('', [Validators.required, Validators.minLength(10)]);
-    this.proposalForm = new FormGroup({proposalTitleTF: this.proposalTitleTF, proposalMessageTA: this.proposalMessageTA});
+    this.visibility = new FormControl(false);
+    this.proposalForm = new FormGroup({proposalTitleTF: this.proposalTitleTF, 
+      proposalMessageTA: this.proposalMessageTA, visibility:this.visibility});
   }
 
 
@@ -170,5 +176,13 @@ export class SearchComponent implements OnInit {
 
  }
 
-  
+ toggleVisbilityLabel() {
+        this.visibility_label = this.visibility.value === true ? "Private" : "Public";
+ }
+
+ setDefaultVisibility() {
+   this.visibility.setValue(false);
+   this.visibility_label = "Private";
+ }
+
 }

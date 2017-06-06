@@ -4,7 +4,7 @@
 <ml-grid>
  <ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>
  <ml-grid-cell *ngIf="searchResults.length !== 0 || searchBusResults.length !== 0"  width="2">
-   <ml-button-submit *ngIf="!working" (click)="makeProposalDlg.show()" [disabled]="searchResults.length === 0 && searchBusResults.length === 0" text="Create a Proposal" aspect="raised" ripple>
+   <ml-button-submit *ngIf="!working" (click)="makeProposalDlg.show();setDefaultVisibility()" [disabled]="searchResults.length === 0 && searchBusResults.length === 0" text="Create a Proposal" aspect="raised" ripple>
    </ml-button-submit>
  </ml-grid-cell>
  <ml-grid-cell width="5" class="bg-grey">&nbsp;</ml-grid-cell>
@@ -85,7 +85,7 @@
   <ml-dialog-actions>
     <ml-button-submit large-screen-only [disabled]="!proposalForm.valid" aspect="raised, colored, primary" (click)="addProposal()" ripple text="Publish Proposal"></ml-button-submit>
     <ml-button-submit small-screen-only class="shrink" [disabled]="!proposalForm.valid" aspect="raised" (click)="addProposal()" ripple text="Publish"></ml-button-submit>
-    
+    <ml-switch id="visibility_id" (click)="toggleVisbilityLabel()" [formControl]="visibility" ripple>{{visibility_label}}</ml-switch>
     
     <ml-button large-screen-only aspect="raised, colored, primary" (click)="makeProposalDlg.close()" ripple>Close</ml-button>
     <ml-button small-screen-only class="button_right" variant="icon" (click)="makeProposalDlg.close()"><ml-icon>clear</ml-icon></ml-button>
