@@ -14,6 +14,9 @@ export class MyProposalsComponent implements OnInit {
 
   titleTF: FormControl;
   messageTF: FormControl;
+
+  visibility: FormControl;
+  visibility_label = "Private";
   proposalForm:FormGroup;
 
   selected_proposal= new Proposal(0, '');
@@ -31,9 +34,10 @@ export class MyProposalsComponent implements OnInit {
 
   ngOnInit() {
     this.getMyProposals();
-    this.titleTF = new FormControl('');
-    this.messageTF = new FormControl('');
-    this.proposalForm = new FormGroup({titleTF: this.titleTF, messageTF: this.messageTF});
+    this.titleTF = new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(128)]);
+    this.messageTF = new FormControl('', [Validators.required, Validators.minLength(10)]);
+    this.visibility = new FormControl(false);
+    this.proposalForm = new FormGroup({titleTF: this.titleTF, messageTF: this.messageTF, visibility: this.visibility});
   }
 
   getMyProposals() {
@@ -128,6 +132,10 @@ export class MyProposalsComponent implements OnInit {
             d.dialogRef.hide();
           }
       }
+    }
+
+    toggleVisbilityLabel() {
+        this.visibility_label = this.visibility.value === true ? "Private" : "Public";
     }
 
 }
