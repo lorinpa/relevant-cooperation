@@ -853,7 +853,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var UserProfileService = (function () {
     function UserProfileService(http, userService) {
-        //this.currentUserProfile = new UserProfile(-1,'');
         this.http = http;
         this.userService = userService;
         //currentUserProfile: UserProfile;
@@ -3172,6 +3171,7 @@ var ModifyUserProfileComponent = (function () {
         }).subscribe(function (msg) {
             var jsonObj = JSON.parse(msg);
             _this.userProfile.name = jsonObj['name'];
+            _this.userProfileService.publishUserProfile(_this.userProfile);
             _this.mdlSnackbarService.showSnackbar({ message: 'UserName Updated' });
             _this.rowController.resetActive();
         }, function (err) {
@@ -8508,7 +8508,7 @@ module.exports = __webpack_require__.p + "MaterialIcons-Regular.e79bfd88537def47
 /* 331 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ml-layout drawer=\"fixed\">\n  <ml-header scrollable>\n    <ml-header-row>\n      <ml-title>Relevant Cooperation</ml-title>\n      <ml-nav large-screen-only style=\"justify-content: flex-end;\">\n        <div nav-item>&nbsp;</div>\n        <div nav-item>&nbsp;</div>\n        <div nav-item *ngIf=\"isLoggedIn()\">Welcome:&nbsp;{{userProfile.name}}</div>\n      </ml-nav>\n     \n    </ml-header-row>\n     \n  </ml-header>\n  <ml-drawer>\n    <ml-header-row>\n      <ml-title>Menu</ml-title>\n      <ml-spacer></ml-spacer>\n    </ml-header-row>\n    <ml-nav>\n      <a nav-item [routerLink]=\"['']\">\n        <ml-icon>home</ml-icon>\n        Home</a>\n      \n      <a nav-item [routerLink]=\"['modprofile']\">\n        <ml-icon>perm_identity</ml-icon>\n        Profile</a>\n\n      <a nav-item [routerLink]=\"['search']\">   \n         <ml-icon>link</ml-icon>\n        Find Partners</a>\n      \n       <a nav-item [routerLink]=\"['proposals']\">\n          <ml-icon>mail</ml-icon>\n          My Proprosals\n       </a>\n\n        <a nav-item [routerLink]=\"['public-proposals']\">\n          <ml-icon>folder_open</ml-icon>\n          Public Proprosals\n       </a>\n     \n     <!-- <a nav-item>\n        <ml-icon>info_outline</ml-icon>\n          About this Site\n      </a>-->\n      <a nav-item *ngIf=\"!isLoggedIn()\" [routerLink]=\"['login']\">\n         <ml-icon>person_pin</ml-icon>\n         Login\n      </a>\n\n      <a nav-item *ngIf=\"isLoggedIn()\" [routerLink]=\"['logout']\">\n        <ml-icon>cancel</ml-icon>\n        Log Out</a>  \n\n     <!-- <a nav-item [routerLink]=\"['keywords']\">Keywords</a>-->\n    </ml-nav>\n  </ml-drawer>\n\n  <ml-content-loader spinner (onLoading)=\"onLoading($event)\">\n   \n  </ml-content-loader>\n  <ml-content [hidden]=\"isLoading\" style=\"padding-left: 12px\">  \n     <router-outlet></router-outlet>\n     <dialog-outlet></dialog-outlet>\n  </ml-content>\n\n</ml-layout>"
+module.exports = "\n<ml-layout drawer=\"fixed\">\n  <ml-header scrollable>\n    <ml-header-row>\n      <ml-title>Relevant Cooperation</ml-title>\n      <ml-nav large-screen-only style=\"justify-content: flex-end;\">\n        <div nav-item>&nbsp;</div>\n        <div nav-item>&nbsp;</div>\n        <div nav-item *ngIf=\"isLoggedIn()\">Welcome:&nbsp;{{userProfile.name}}</div>\n      </ml-nav>\n     \n    </ml-header-row>\n     \n  </ml-header>\n  <ml-drawer>\n    <ml-header-row>\n      <ml-title>Menu</ml-title>\n      <ml-spacer></ml-spacer>\n    </ml-header-row>\n    <ml-nav>\n      <a nav-item [routerLink]=\"['']\">\n        <ml-icon>home</ml-icon>\n        Home</a>\n      \n      <a nav-item [routerLink]=\"['modprofile']\">\n        <ml-icon>perm_identity</ml-icon>\n        Profile</a>\n\n      <a nav-item [routerLink]=\"['search']\">   \n         <ml-icon>link</ml-icon>\n        Find Partners</a>\n      \n       <a nav-item [routerLink]=\"['proposals']\">\n          <ml-icon>mail</ml-icon>\n          My Proprosals\n       </a>\n\n        <a nav-item [routerLink]=\"['public-proposals']\">\n          <ml-icon>folder_open</ml-icon>\n          Public Proprosals\n       </a>\n     \n     <!-- <a nav-item>\n        <ml-icon>info_outline</ml-icon>\n          About this Site\n      </a>-->\n      <a nav-item *ngIf=\"!isLoggedIn()\" [routerLink]=\"['login']\">\n         <ml-icon>person_pin</ml-icon>\n         Login\n      </a>\n\n      <a nav-item *ngIf=\"isLoggedIn()\" [routerLink]=\"['logout']\">\n        <ml-icon>cancel</ml-icon>\n        Log Out</a>  \n\n    \n    </ml-nav>\n  </ml-drawer>\n\n  <ml-content-loader spinner (onLoading)=\"onLoading($event)\">\n   \n  </ml-content-loader>\n  <ml-content [hidden]=\"isLoading\" style=\"padding-left: 12px\">  \n     <router-outlet></router-outlet>\n     <dialog-outlet></dialog-outlet>\n  </ml-content>\n\n</ml-layout>"
 
 /***/ }),
 /* 332 */

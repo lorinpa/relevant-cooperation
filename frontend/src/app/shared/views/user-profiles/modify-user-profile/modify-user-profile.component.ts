@@ -486,6 +486,7 @@ export class ModifyUserProfileComponent implements OnInit {
        msg => {
          var jsonObj = JSON.parse(msg);
          this.userProfile.name = jsonObj['name'];
+         this.userProfileService.publishUserProfile(this.userProfile);
          this.mdlSnackbarService.showSnackbar({message:'UserName Updated'});
          this.rowController.resetActive();
       },

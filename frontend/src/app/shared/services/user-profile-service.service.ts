@@ -14,16 +14,14 @@ export class UserProfileService {
   //currentUserProfile: UserProfile;
 
   private userName = new Subject<string>();
-   userName$ = this.userName.asObservable();
+  userName$ = this.userName.asObservable();
   private up = new Subject<UserProfile>();
   up$ = this.up.asObservable();
 
   public static readonly NOT_UNIQUE = "NOT-UNIQUE";
 
   constructor(private http: Http,private userService: UserService) { 
-      
-      //this.currentUserProfile = new UserProfile(-1,'');
-
+    
   }
 
   publishUserName(name:string) {
