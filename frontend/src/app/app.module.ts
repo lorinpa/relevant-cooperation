@@ -54,6 +54,7 @@ import { PartnerProposalsComponent } from "app/shared/views/proposals/partner.pr
 import { ProposalsComponent } from './shared/views/proposals/proposals.component';
 import { RegistrationComponent } from './shared/components/pa/registration/registration.component';
 import { PublicProposalsComponent } from './shared/views/proposals/public-proposals.component';
+import { SortByDirective } from "app/shared/directives/sort-by.directive";
 
 
 
@@ -72,7 +73,8 @@ import { PublicProposalsComponent } from './shared/views/proposals/public-propos
     PartnerProposalsComponent,
     ProposalsComponent,
     RegistrationComponent,
-    PublicProposalsComponent
+    PublicProposalsComponent,
+    SortByDirective
   ],
   imports: [
     BrowserModule,

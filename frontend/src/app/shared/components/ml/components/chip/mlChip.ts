@@ -26,7 +26,8 @@ template:`
   @Input() background: string = 'teal';
   @Input('delete-action') action: Function;
 
-  private visible: boolean = true;
+  visible: boolean = true;
+  //private visible: boolean = true;
 
   public deleteChip($event: any): boolean {
     //todo: remove from dom?
