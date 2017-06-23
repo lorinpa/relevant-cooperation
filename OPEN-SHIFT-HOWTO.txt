@@ -52,7 +52,7 @@ the openshift "RHC" utility to make sure you app is re-deployed when you move to
 Example:
 
 $local mwave dev> git checkout -b dev-1.0 
-$local mwave dev>  rhc -a jbosswildfly app-configure --deployment-branch dev-1.0
+$local>  rhc app-configure jbosswildfly --deployment-branch dev-1.5
 
 Note! we had to perform 2 steps: 1) create new git branch (and switch to it). 2) reset openshift to deploy when the new
 dev-1.0 branch is pushed
