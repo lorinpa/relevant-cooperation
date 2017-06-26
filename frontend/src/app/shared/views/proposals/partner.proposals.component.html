@@ -6,16 +6,16 @@
      
         <th text-cell>Title</th>
     
-        <th>Details</th>
-        <th>Dismiss</th>
+        <th text-cell>Details</th>
+        <th text-cell>Dismiss</th>
       
       </tr>
 
       <tr *ngFor="let kw of partner_proposals">
         <td text-cell>{{kw.createdAt}} </td>
-        <td text-cell class="cell_wrap">{{kw.title}}</td>
-        <td><ml-button variant="icon" aspect="raised" (click)="selectProposalById(kw.id); detailDlg.show()"><ml-icon>zoom_in</ml-icon></ml-button></td>
-        <td><ml-button variant="icon" aspect="raised" (click)="dismissPartnerProposal(kw.id)"><ml-icon>visibility_off</ml-icon></ml-button></td>
+        <td text-cell style="white-space: pre-wrap;">{{kw.title}}</td>
+        <td text-cell><ml-button variant="icon" aspect="raised" (click)="selectProposalById(kw.id); detailDlg.show()"><ml-icon>zoom_in</ml-icon></ml-button></td>
+        <td text-cell><ml-button variant="icon" aspect="raised" (click)="dismissPartnerProposal(kw.id)"><ml-icon>visibility_off</ml-icon></ml-button></td>
       </tr>
     </table>
 

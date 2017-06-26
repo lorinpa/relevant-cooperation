@@ -1,0 +1,15 @@
+ 
+ .contact {
+     font-size: 110%;
+ }
+ .contact:hoover {
+     content: "<div>co_support@public-action.org</div>";
+ }
+#contactbox {
+     /* font-weight: bold;   
+  margin-left: -10px;*/
+    padding: 10%;
+    width:20%;
+    background:white;
+    box-shadow:10px 10px 5px #888;
+}

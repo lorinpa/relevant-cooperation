@@ -22,28 +22,28 @@
         <ml-icon>home</ml-icon>
         Home</a>
       
-      <a nav-item [routerLink]="['modprofile']">
+      <a nav-item *ngIf="isLoggedIn()" [routerLink]="['modprofile']">
         <ml-icon>perm_identity</ml-icon>
         Profile</a>
 
-      <a nav-item [routerLink]="['search']">   
+      <a nav-item *ngIf="isLoggedIn()" [routerLink]="['search']">   
          <ml-icon>link</ml-icon>
         Find Partners</a>
       
-       <a nav-item [routerLink]="['proposals']">
+       <a nav-item *ngIf="isLoggedIn()" [routerLink]="['proposals']">
           <ml-icon>mail</ml-icon>
           My Proprosals
        </a>
 
-        <a nav-item [routerLink]="['public-proposals']">
+        <a nav-item *ngIf="isLoggedIn()" [routerLink]="['public-proposals']">
           <ml-icon>folder_open</ml-icon>
           Public Proprosals
        </a>
      
-     <!-- <a nav-item>
+     <a nav-item   [routerLink]="['contact']">
         <ml-icon>info_outline</ml-icon>
-          About this Site
-      </a>-->
+          Contact Us
+      </a>
       <a nav-item *ngIf="!isLoggedIn()" [routerLink]="['login']">
          <ml-icon>person_pin</ml-icon>
          Login

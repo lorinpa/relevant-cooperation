@@ -55,6 +55,7 @@ import { ProposalsComponent } from './shared/views/proposals/proposals.component
 import { RegistrationComponent } from './shared/components/pa/registration/registration.component';
 import { PublicProposalsComponent } from './shared/views/proposals/public-proposals.component';
 import { SortByDirective } from "app/shared/directives/sort-by.directive";
+import { ContactFormComponent } from "app/shared/components/pa/contact-form/contact-form.component";
 
 
 
@@ -74,6 +75,7 @@ import { SortByDirective } from "app/shared/directives/sort-by.directive";
     ProposalsComponent,
     RegistrationComponent,
     PublicProposalsComponent,
+    ContactFormComponent,
     SortByDirective
   ],
   imports: [
