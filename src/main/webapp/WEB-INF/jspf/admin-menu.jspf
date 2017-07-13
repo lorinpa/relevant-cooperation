@@ -1,0 +1,11 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<div style="width: 100%;background: blue;">
+    
+    <a class="aml" href="/co/admin/logout.jsp">Logout</a>
+    <a class="aml" href="/co/admin/index.jsp">Admin Home</a>
+    <a class="aml" href="/co/admin/keywords/list.jsp">Keywords</a>
+    <a class="aml" href="/co/admin/keywords/unused.jsp">Unused Keywords</a>
+    
+</div>

@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,25 +20,22 @@ import javax.persistence.Table;
  * @author mwave
  */
 @Entity
-@Table(name = "KEYWORD_VALUES")
-public class KeywordValue implements Serializable {
+@Table(name = "user_roles")
+public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    @Column(name = "keyword_value", length = 128, nullable = false)
-    private String keyword;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public KeywordValue(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public KeywordValue() {
-    }
     
+    @Column(name = "role_name", length = 128, nullable = false)
+    private String roleName;
+    
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private User user;
+    
+
     public Long getId() {
         return id;
     }
@@ -45,18 +44,22 @@ public class KeywordValue implements Serializable {
         this.id = id;
     }
 
-    public String getKeyword() {
-        return keyword;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setKeywordValue(String keyword) {
-        this.keyword = keyword;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
-   
-    
-    
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -67,24 +70,19 @@ public class KeywordValue implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof KeywordValue)) {
+        if (!(object instanceof UserRole)) {
             return false;
         }
-        KeywordValue other = (KeywordValue) object;
+        UserRole other = (UserRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
-        
-        if ((this.keyword == null && other.keyword != null) || (this.keyword != null && !this.keyword.equals(other.keyword))) {
-            return false;
-        }
-        
         return true;
     }
 
     @Override
     public String toString() {
-        return "org.pa.data.Keyword[ id=" + id + " keyword="+keyword+ "]";
+        return "org.pa.data.UserRole[ id=" + id + " ]";
     }
     
 }

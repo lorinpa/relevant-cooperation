@@ -6,6 +6,7 @@
 package org.pa.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -49,9 +50,13 @@ public class KeywordRepository extends CommonRepository {
     @Transactional
     public KeywordValue update(Serializable id, String keywordValue) throws Exception {
         EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
-        KeywordValue kw = (KeywordValue)findOne(id);
+        Query q = em.createQuery("select a from KeywordValue a where a.id = ?1");
+        q.setParameter(1, id);
+        em.getTransaction().begin();
+        KeywordValue kw = (KeywordValue)q.getSingleResult();
         kw.setKeywordValue(keywordValue);
         em.merge(kw);
+        em.getTransaction().commit();
         em.close();
         return kw;
     }
@@ -65,6 +70,18 @@ public class KeywordRepository extends CommonRepository {
             q.setParameter(1, kw.getId());
             kw = (KeywordValue) q.getSingleResult();
         }
+        em.getTransaction().begin();
+        em.remove(kw);
+        em.getTransaction().commit();
+        em.close();
+    }
+    
+     @Transactional
+    public void deleteById(Long id) {
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        Query q = em.createQuery("select a from KeywordValue a where a.id = ?1");
+        q.setParameter(1, id);
+        KeywordValue kw = (KeywordValue) q.getSingleResult();
         em.getTransaction().begin();
         em.remove(kw);
         em.getTransaction().commit();
@@ -100,6 +117,41 @@ public class KeywordRepository extends CommonRepository {
         List<KeywordValue> list = q.getResultList();
         em.close();
         return list;
+    }
+    
+    @Transactional 
+    public List<KeywordValue> findAllAscending() {
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        Query q = em.createQuery("select a from KeywordValue a ORDER BY a.keyword ASC");
+        List<KeywordValue> list = q.getResultList();
+        em.close();
+        return list;
+    }
+    
+    public List<KeywordValue> findUnused() {
+        List<KeywordValue> result = new ArrayList<KeywordValue>();
+        List<Long> ids= new ArrayList<Long>();
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+        try {        
+            Query bq = em.createQuery("select a.businessConcept.id from BusinessConcept a LEFT OUTER JOIN a.businessConcept KeywordValue");
+            List<Long> blist = bq.getResultList();
+            ids.addAll(blist);
+            Query pq = em.createQuery("select a.partnerService.id from PartnerService a LEFT OUTER JOIN a.partnerService KeywordValue");
+            List<Long> plist = pq.getResultList();
+            ids.addAll(plist);
+            Query uq = em.createQuery("select a.userProvidedService.id from UserProvidedService a LEFT OUTER JOIN a.userProvidedService KeywordValue");
+            List<Long> ulist = uq.getResultList();
+            ids.addAll(ulist);
+            Query rq = em.createQuery("select a from KeywordValue a WHERE a.id not in ?1");
+            rq.setParameter(1, ids);
+            result = rq.getResultList();
+        } catch (Exception e) {
+            String debug = e.getMessage();
+        } finally {
+            em.close();
+        }
+        
+        return result;
     }
     
     public List<SearchResultDTO> search(String subjectName) {

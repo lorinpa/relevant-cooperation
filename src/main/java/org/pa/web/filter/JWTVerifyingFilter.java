@@ -10,10 +10,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import io.jsonwebtoken.Jwts;
-import org.pa.repository.UserProfileRepository;
 import org.pa.repository.UserRepository;
  
 public class JWTVerifyingFilter extends AccessControlFilter {
