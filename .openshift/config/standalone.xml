@@ -423,7 +423,7 @@
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
             </mail-session>
             <mail-session name="lorintech" jndi-name="java:jboss/mail/lorintech">
-                <smtp-server outbound-socket-binding-ref="mail-smtp" ssl="true" username="comessage@lorintech.com" password="T4x#gUxP2$fjU3nPqvM4d86#kl"/>
+                <smtp-server outbound-socket-binding-ref="mail-smtp" ssl="true" username="${env.CO_EMAIL_USER}" password="T4x#gUxP2$fjU3nPqvM4d86#kl"/>
             </mail-session>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:messaging-activemq:1.0">
