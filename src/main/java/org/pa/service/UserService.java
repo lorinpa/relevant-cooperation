@@ -23,6 +23,7 @@ import javax.ws.rs.ext.Provider;
 import javax.xml.bind.DatatypeConverter;
 
 import org.pa.data.User;
+import static org.pa.definitions.RequestDefinitions.JWT_ATTR_KEY;
 import static org.pa.definitions.RequestDefinitions.NOT_UNIQUE_EXCEPTION;
 import static org.pa.definitions.RequestDefinitions.UNEXPECTED_EXCEPTION;
 import org.pa.dto.RegistrationDTO;
@@ -64,13 +65,14 @@ public class UserService {
     @Produces("application/json")
     @Consumes("application/json")
     public Response updateSubjectName(@Context javax.servlet.http.HttpServletRequest request, User user) {
+        String jwt_key = (String) request.getServletContext().getAttribute(JWT_ATTR_KEY);
         String subj = (String) request.getAttribute("subj");
         String email = user.getEmail();
         try {
             String result = UserRepository.getInstance().updateSubject(subj, email);
             SignatureAlgorithm sigAlg = SignatureAlgorithm.HS256;
 		
-		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary("secret");
+		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwt_key);
 		Key signingKey = new SecretKeySpec(apiKeySecretBytes, sigAlg.getJcaName());
 		//System.out.println(request.getUserPrincipal().getName());
 		JwtBuilder builder = Jwts.builder()

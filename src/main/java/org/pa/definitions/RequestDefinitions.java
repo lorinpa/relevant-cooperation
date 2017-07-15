@@ -15,6 +15,9 @@ public class RequestDefinitions {
     
     public final static String NOT_UNIQUE_EXCEPTION = "NOT-UNIQUE";
     public final static String UNEXPECTED_EXCEPTION = "UNEXPECTED";
+   
+    
+    public final static String JWT_ATTR_KEY = "JWT_ATTR";
   
     
 }

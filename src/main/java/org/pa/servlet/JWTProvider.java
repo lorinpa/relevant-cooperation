@@ -20,6 +20,8 @@ import javax.xml.bind.DatatypeConverter;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import javax.servlet.ServletConfig;
+import static org.pa.definitions.RequestDefinitions.JWT_ATTR_KEY;
 
 /**
  * Servlet implementation class JWTProvider
@@ -27,6 +29,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @WebServlet("/JWTProvider")
 public class JWTProvider extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+        private String jwt_key;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,9 +42,10 @@ public class JWTProvider extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SignatureAlgorithm sigAlg = SignatureAlgorithm.HS256;
 		
-		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary("secret");
+                SignatureAlgorithm sigAlg = SignatureAlgorithm.HS256;
+		
+		byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwt_key);
 		Key signingKey = new SecretKeySpec(apiKeySecretBytes, sigAlg.getJcaName());
 		//System.out.println(request.getUserPrincipal().getName());
 		JwtBuilder builder = Jwts.builder()
@@ -59,4 +63,12 @@ public class JWTProvider extends HttpServlet {
 		doGet(request, response);
 	}
 
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config); //To change body of generated methods, choose Tools | Templates.
+        jwt_key = (String) config.getServletContext().getAttribute(JWT_ATTR_KEY);
+    }
+
+        
+        
 }
