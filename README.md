@@ -1,5 +1,7 @@
-The OpenShift `jbossas` cartridge documentation can be found at:
+Relevant Cooperation
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossas/README.md
+A service which helps folks interested in starting a new worker cooperative. Helps folks: find potential business partners, exchange contact information.
+
+Relevant Cooperation is a free service. The only thing you need to supply is an email address. 
 
 
