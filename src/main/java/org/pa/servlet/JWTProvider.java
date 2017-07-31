@@ -20,7 +20,10 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import javax.servlet.ServletConfig;
+import javax.servlet.http.Cookie;
+
 import static org.pa.definitions.RequestDefinitions.JWT_ATTR_KEY;
+import org.pa.utils.CookieUtil;
 
 /**
  * Servlet implementation class JWTProvider
@@ -43,7 +46,11 @@ public class JWTProvider extends HttpServlet {
      * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
+       
+       
+       
+        
         SignatureAlgorithm sigAlg = SignatureAlgorithm.HS256;
 
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwt_key);
@@ -54,6 +61,8 @@ public class JWTProvider extends HttpServlet {
                 .signWith(sigAlg, signingKey);
 
         response.getWriter().write(builder.compact());
+        Cookie cookie = CookieUtil.getInstance().generateCookie(request, builder.compact());
+        response.addCookie(cookie);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
@@ -71,4 +80,6 @@ public class JWTProvider extends HttpServlet {
         jwt_key = (String) config.getServletContext().getAttribute(JWT_ATTR_KEY);
     }
 
+    
+    
 }

@@ -14,6 +14,7 @@ import org.apache.shiro.web.filter.AccessControlFilter;
 import io.jsonwebtoken.Jwts;
 import static org.pa.definitions.RequestDefinitions.JWT_ATTR_KEY;
 import org.pa.repository.UserRepository;
+import org.pa.utils.CookieUtil;
  
 public class JWTVerifyingFilter extends AccessControlFilter {
  
@@ -22,6 +23,7 @@ public class JWTVerifyingFilter extends AccessControlFilter {
         boolean accessAllowed = false;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String jwt_key = (String) httpRequest.getServletContext().getAttribute(JWT_ATTR_KEY);
+        String cookieTokenValue = CookieUtil.getInstance().getCookieToken(httpRequest);
         String jwt = httpRequest.getHeader("Authorization");
         if (jwt == null || !jwt.startsWith("Bearer ")) {
             return accessAllowed;

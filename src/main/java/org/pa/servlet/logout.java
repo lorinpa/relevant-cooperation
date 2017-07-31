@@ -9,9 +9,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.pa.utils.CookieUtil;
 
 /**
  *
@@ -31,10 +33,14 @@ public class logout extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+       
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
+            Cookie cookie = CookieUtil.getInstance().removeCookie(request);
+            response.addCookie(cookie);
             out.print("{'ok':true}");
             
         } finally {
