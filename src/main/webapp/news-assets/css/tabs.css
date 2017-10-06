@@ -1,0 +1,56 @@
+
+.c-tab {
+ display: none;
+ /*background-color: #e7e7e7;*/
+}
+
+.c-tab.is-active {
+ display: block;
+}
+
+.c-tab__content {
+
+ padding: .5em 1em;
+}
+
+/**
+* Tabs no-js fallback
+*/
+.c-tabs.no-js .c-tabs-nav {
+  display: none;
+}
+
+.c-tabs.no-js .c-tab {
+ display: block;
+ margin-bottom: 1.5rem;
+}
+
+.c-tabs.no-js .c-tab:last-child {
+ margin-bottom: 0;
+}
+
+.news-link {
+    /*color: #777;*/
+    text-decoration: none;
+}
+
+.news-link:hover {
+	background-color: #eee;
+}
+
+.news-item {
+    margin-bottom: 2px;
+}
+
+
+
+@media (min-width:320px)  { 
+    .pure-menu-link {
+        white-space: normal;
+    }
+}
+@media (min-width:481px)  {
+    .pure-menu-link {
+        white-space: normal;
+    }
+}

@@ -5,12 +5,12 @@
  */
 package org.pa.web.filter;
 
-import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import org.pa.data.KeywordValue;
 import static org.pa.definitions.RequestDefinitions.JWT_ATTR_KEY;
+import org.pa.ejb.RssTimer;
 import org.pa.repository.SystemPropertyRepository;
 
 /**
@@ -20,11 +20,24 @@ import org.pa.repository.SystemPropertyRepository;
  */
 @WebListener
 public class AppListener implements ServletContextListener {
+    
+    @EJB(lookup ="java:global/co/RssTimer!org.pa.ejb.RssTimer")
+    private RssTimer rssTimer;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         String jwt_key = SystemPropertyRepository.getInstance().findJwtKey();
         sce.getServletContext().setAttribute(JWT_ATTR_KEY,jwt_key);
+        /* get all the rss feeds at startup */
+        if (rssTimer != null) {
+            rssTimer.democracyAtWorkRssTimer();
+            rssTimer.usFedWorkerCoopRssTimer();
+            rssTimer.demEnterpriseRssTimer();
+            rssTimer.redditRssTimer();
+            rssTimer.googleRssTimer();          
+        } else {
+            System.err.println("Could not do ejb lookup");
+        }
     }
 
     @Override
