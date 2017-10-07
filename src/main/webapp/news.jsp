@@ -44,7 +44,7 @@
           "@type": "WebSite",
           "name": "Relevant Cooperation",
           "alternateName": "Relevant-Coop",
-          "url": "https:://relevant-coop.org/news.jsp",
+          "url": "https:://relevant-coop.org/co/news.jsp",
           "description": "start worker cooperative find partners"
         }
     </script>
