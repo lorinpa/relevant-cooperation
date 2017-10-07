@@ -66,7 +66,7 @@
       }
     };
 
-    init();
+    //init();
     /**
      * Returns init and goToTab
      */

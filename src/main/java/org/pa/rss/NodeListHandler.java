@@ -57,6 +57,9 @@ public class NodeListHandler extends DefaultHandler  {
   }
 
   public NodeList get() {
+    if (list == null) {
+        list = new NodeList();
+    }
     return list;
   }
 }

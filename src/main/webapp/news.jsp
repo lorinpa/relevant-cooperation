@@ -6,7 +6,7 @@
 
 <%@page import="org.pa.rss.Node"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.pa.rss.FeedData, org.pa.rss.NodeList, org.pa.rss.Node" %>
+<%@page import="org.pa.rss.data.*, org.pa.rss.NodeList, org.pa.rss.Node" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -81,7 +81,7 @@
                     <div  class="pure-menu">
                         
                         <ul class="pure-menu-list">
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Democracy At Work (d@w)</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link is-active">Democracy At Work (d@w)</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">U.S. Federation of Worker Cooperatives</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Democratize the Enterprise</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Reddit</a></li>
@@ -90,13 +90,13 @@
                     </div>
                     <hr/>
                  
-                    <div class="c-tab">
-                        <div class="c-tab__content is-active">
+                    <div class="c-tab is-active">
+                        <div class="c-tab__content">
                              <div>Democracy At Work</div>
-                            <% if (FeedData.getInstance().getDemocracyAtWorkRss() != null && FeedData.getInstance().getDemocracyAtWorkRss().size() > 0) { %>
+                            <% if (DemAtWorkFeedData.getInstance().getNodeList() != null && DemAtWorkFeedData.getInstance().getNodeList().size() > 0) { %>
                             
                                 <ul>
-                                    <% for (Node node : FeedData.getInstance().getDemocracyAtWorkRss()) { %>
+                                    <% for (Node node : DemAtWorkFeedData.getInstance().getNodeList()) { %>
                                         <li class="news-item"><a class="news-link" href="<%=node.getLink()%>" target="_blank"><%=node.getTitle()%></a></li>
                                     <% } %>
                                </ul>
@@ -110,10 +110,10 @@
                     <div class="c-tab">
                         <div class="c-tab__content">
                             <div>U.S. Federation of Worker Cooperatives</div>
-                            <% if (FeedData.getInstance().getUsFedRss() != null && FeedData.getInstance().getUsFedRss().size() > 0) { %>
+                            <% if (UsFedCoopFeedData.getInstance().getNodeList() != null && UsFedCoopFeedData.getInstance().getNodeList().size() > 0) { %>
                             
                                 <ul>
-                                    <% for (Node node : FeedData.getInstance().getUsFedRss()) { %>
+                                    <% for (Node node : UsFedCoopFeedData.getInstance().getNodeList()) { %>
                                         <li class="news-item"><a class="news-link" href="<%=node.getLink()%>" target="_blank"><%=node.getTitle()%></a></li>
                                     <% } %>
                                </ul>
@@ -126,10 +126,10 @@
                     <div class="c-tab">
                         <div class="c-tab__content">
                             <div>Democratize the Enterprise</div>
-                            <% if (FeedData.getInstance().getDemTheEnterpriseRss() != null && FeedData.getInstance().getDemTheEnterpriseRss().size() > 0) { %>
+                            <% if (DemEnterpriseFeedData.getInstance().getNodeList() != null && DemEnterpriseFeedData.getInstance().getNodeList().size() > 0) { %>
                             
                                 <ul>
-                                    <% for (Node node : FeedData.getInstance().getDemTheEnterpriseRss()) { %>
+                                    <% for (Node node : DemEnterpriseFeedData.getInstance().getNodeList()) { %>
                                         <li class="news-item"><a class="news-link" href="<%=node.getLink()%>" target="_blank"><%=node.getTitle()%></a></li>
                                     <% } %>
                                </ul>
@@ -142,10 +142,10 @@
                      <div class="c-tab">
                         <div class="c-tab__content">
                             <div>Reddit</div>
-                            <% if (FeedData.getInstance().getRedditRss() != null && FeedData.getInstance().getRedditRss().size() > 0) { %>
+                            <% if (RedditFeedData.getInstance().getNodeList() != null && RedditFeedData.getInstance().getNodeList().size() > 0) { %>
                             
                                 <ul>
-                                    <% for (Node node : FeedData.getInstance().getRedditRss()) { %>
+                                    <% for (Node node : RedditFeedData.getInstance().getNodeList()) { %>
                                         <li class="news-item"><a class="news-link" href="<%=node.getLink()%>" target="_blank"><%=node.getTitle()%></a></li>
                                     <% } %>
                                </ul>
@@ -158,10 +158,10 @@
                     <div class="c-tab">
                         <div class="c-tab__content">
                             <div>Google News</div>
-                            <% if (FeedData.getInstance().getGoogleRss() != null && FeedData.getInstance().getGoogleRss().size() > 0) { %>
+                            <% if (GoogleFeedData.getInstance().getNodeList() != null && GoogleFeedData.getInstance().getNodeList().size() > 0) { %>
                             
                                 <ul>
-                                    <% for (Node node : FeedData.getInstance().getGoogleRss()) { %>
+                                    <% for (Node node : GoogleFeedData.getInstance().getNodeList()) { %>
                                         <li class="news-item"><a class="news-link" href="<%=node.getLink()%>" target="_blank"><%=node.getTitle()%></a></li>
                                     <% } %>
                                </ul>
