@@ -1,13 +1,13 @@
-Relevant Cooperation
+Relevant Cooperation Service
 
-A service which helps folks interested in starting a new worker cooperative. Helps folks: find potential business partners, exchange contact information.
+A service which helps folks interested in starting a new worker cooperative. Helps folks: find potential partners, business ideas, and exchange contact information.
 
 Relevant Cooperation is a free service. The only thing you need to supply is an email address. 
 
-Our screen-cast details what Relevant Cooperation is, and how to use it.
+Our screen-cast details what the Relevant Cooperation Service is, and how to use it.
 
 [![Screen-Cast](http://public-action.org/mob/screencast-sm.jpg)](https://www.youtube.com/watch?v=JVHjg5bXKOc&feature=youtu.be)
 
-Read the story behind Relevant Cooperation on our WIKI here:
-https://github.com/lorinpa/relevant-cooperation/wiki/Taking-Care-of-Business
+Read more on our website located at: https://relevant-coop.org
+
 
