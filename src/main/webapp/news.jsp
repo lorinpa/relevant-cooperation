@@ -22,6 +22,10 @@
     <meta property="og:url" content="https://relevant-coop.org/" />
     <meta property="og:description" content="Service helps start a worker cooperative by finding partners."/>
     <meta property="og:video" content="https://youtu.be/JVHjg5bXKOc"/>
+    <meta name="twitter:title" content="Relevant Cooperation">
+    <meta name="twitter:description" content="Service helps you start a worker cooperative by finding partners and business ideas.">
+    <meta name="twitter:image" content="https://relevant-coop.org/img/relevant-coop-thumb.png">
+
 
     <link rel="stylesheet" href="news-assets/css/pure-min.css">
     <link rel="stylesheet" href="news-assets/css/grids-responsive-min.css">
