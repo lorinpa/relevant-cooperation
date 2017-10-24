@@ -10,14 +10,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
  *
@@ -47,7 +45,7 @@ public class RemoteFeed {
     
     public NodeList getData() {
         URL urlObj; 
-        HttpURLConnection con;
+        HttpURLConnection con = null;
         StringBuffer response;
         NodeList nodeList;
         BufferedReader in = null;
@@ -58,28 +56,30 @@ public class RemoteFeed {
                 con.setRequestProperty("User-Agent", USER_AGENT);
                 con.setRequestProperty("Accept", "application/xml");
                 int responseCode = con.getResponseCode();
-                
-		//System.out.println("\nSending 'GET' request to URL : " + urlString);
-		//System.out.println("Response Code : " + responseCode);
+            
                 in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream(),"UTF-8"));
                 
                 InputSource is = new InputSource(in);
                 is.setEncoding("UTF-8");
                 nodeList = parseObject(is);
-		//in.close();
-                
-               
+              
         } catch (Exception e) {
+             System.err.println("Trying to process URL: "+ this.urlString);
              System.err.println(e);
              nodeList = new NodeList();
         } finally {
             try {
-                in.close();
+                if (in != null) {
+                    in.close();
+                }
             } catch(IOException ioe) {
                 
             } catch(Exception une) {
                 
+            }
+            if (con != null) {
+                 con.disconnect();
             }
         }
         return nodeList;
@@ -101,7 +101,7 @@ public class RemoteFeed {
         return xmlreader;
     }
     
-    public NodeList parseObject(InputSource is) {
+    public NodeList parseObject(InputSource is) throws Exception {
         NodeList list = null;
         try {
             XMLReader xmlreader = initializeReader();
@@ -121,8 +121,11 @@ public class RemoteFeed {
            
             return list;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            System.err.println("parseObject() Trying to process URL: "+ this.urlString);
+            //System.err.println(e.getMessage());
+           // e.printStackTrace();
+           throw new Exception(e.getMessage());
+            //return null;
         }
     }
 }
