@@ -12,17 +12,17 @@ import org.pa.rss.NodeList;
  * @author mwave
  * We create a separate singleton class for each feed to avoid lock contention at startup.
  */
-public class DemAtWorkFeedData {
-     private static DemAtWorkFeedData instance;
+public class DemCollabFeedData implements FeedDataInterface {
+     private static DemCollabFeedData instance;
      private NodeList nodeList;
      
-     private DemAtWorkFeedData() {   
+     private DemCollabFeedData() {   
        this.nodeList = new NodeList();     
     }
     
-    public static DemAtWorkFeedData getInstance() {
+    public static DemCollabFeedData getInstance() {
         if (instance == null) {
-            instance = new DemAtWorkFeedData();
+            instance = new DemCollabFeedData();
         }
         return instance;
     }

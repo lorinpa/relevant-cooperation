@@ -18,5 +18,7 @@ public class FeedTypes {
     public final static String DEMOC_ENTERPISE_RSS_URL =  "https://www.democratizetheenterprise.org/feed/";
     public final static String REDDIT_RSS_URL = "https://www.reddit.com/r/cooperatives/.rss";
     public final static String GOOGLE_RSS_URL ="https://news.google.com/news/rss/headlines/section/q/worker%20cooperatives/worker%20cooperatives?ned=us&hl=en";
+    public final static String COOP_NEWS_RSS_URL ="https://www.thenews.coop/category/sector/worker-coops/feed/";
+    public final static String DEM_COLLAB_RSS_URL ="https://democracycollaborative.org/rss.xml";
    
 }
