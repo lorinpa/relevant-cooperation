@@ -87,7 +87,8 @@
                         <ul class="pure-menu-list">
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link is-active">Democracy At Work (d@w)</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">U.S. Federation of Worker Cooperatives</a></li>
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Democratize the Enterprise</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Coop News</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Democracy Collaborative</a></li>   
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Reddit</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Google News</a></li>                         
                         </ul>
@@ -127,13 +128,30 @@
                             <% } %>
                         </div>
                     </div>
+                  
                     <div class="c-tab">
                         <div class="c-tab__content">
-                            <div>Democratize the Enterprise</div>
-                            <% if (DemEnterpriseFeedData.getInstance().getNodeList() != null && DemEnterpriseFeedData.getInstance().getNodeList().size() > 0) { %>
+                            <div>Coop News</div>
+                            <% if (CoopNewsFeedData.getInstance().getNodeList() != null && CoopNewsFeedData.getInstance().getNodeList().size() > 0) { %>
                             
                                 <ul>
-                                    <% for (Node node : DemEnterpriseFeedData.getInstance().getNodeList()) { %>
+                                    <% for (Node node : CoopNewsFeedData.getInstance().getNodeList()) { %>
+                                        <li class="news-item"><a class="news-link" href="<%=node.getLink()%>" target="_blank"><%=node.getTitle()%></a></li>
+                                    <% } %>
+                               </ul>
+                           
+                            <% } else { %>
+                                <div>News Source not currently available.</div>
+                            <% } %>
+                        </div>
+                    </div>
+                      <div class="c-tab">
+                        <div class="c-tab__content">
+                            <div>Democracy Collaborative</div>
+                            <% if (DemCollabFeedData.getInstance().getNodeList() != null && DemCollabFeedData.getInstance().getNodeList().size() > 0) { %>
+                            
+                                <ul>
+                                    <% for (Node node : DemCollabFeedData.getInstance().getNodeList()) { %>
                                         <li class="news-item"><a class="news-link" href="<%=node.getLink()%>" target="_blank"><%=node.getTitle()%></a></li>
                                     <% } %>
                                </ul>
