@@ -9,9 +9,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -71,6 +74,15 @@ public class AppListener implements ServletContextListener {
         solvers.forEach((s) -> {
             ecs.submit(s);
         });
+        solvers.forEach((s) -> {
+            try {
+                ecs.take().get();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AppListener.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExecutionException ex) {
+                Logger.getLogger(AppListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } );
         tpe.shutdown();
     }
 }
