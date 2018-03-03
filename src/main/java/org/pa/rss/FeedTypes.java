@@ -13,7 +13,7 @@ public class FeedTypes {
     public final static int RSS = 0;
     public final static int ATOM = 1;
     
-    public final static String DEM_AT_WORK_RSS_URL = "http://www.democracyatwork.info/home.rss";
+    public final static String DEM_AT_WORK_RSS_URL = "https://www.democracyatwork.info/home.rss";
     public final static String US_FED_COOP_RSS_URL = "https://usworker.coop/en/feed/";
     public final static String DEMOC_ENTERPISE_RSS_URL =  "https://www.democratizetheenterprise.org/feed/";
     public final static String REDDIT_RSS_URL = "https://www.reddit.com/r/cooperatives/.rss";
